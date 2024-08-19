@@ -11,10 +11,46 @@
 
     <body>
         <main>
+
             <h1>Project Solencia</h1>
-            <p>A limbo between the living.</p>
+            <p>A limbo between the living, the dead</p>
+
             <div id="game-window">
 
+                <div id="player-data-head">
+                    <img id="player-data-char-img" src="" width="" height="" alt="Player char face" />
+                    <div id="player-data-head">
+                        <strong><span id="player-data-head-name">Character</span></strong>
+                        <div id="player-data-head-lvl-xp">
+                            <span>Lvl: <strong><span id="lvl-text">1</span></strong></span>
+                            <span>Xp: <strong><span id="xp-text">0</span></strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content"></div>
+
+                <div id="monster-stats">
+                    <span>Monster: <strong><span id="monster-name-text"></span></strong></span>
+                    <span>Health: <strong><span id="monster-health-text"></span></strong></span>
+                </div>
+
+                <div id="game-controls">
+                    <div id="game-controls-dynamic-nav-cont"></div>
+                    <div id="game-controls-mixed-panel"></div>
+                </div>
+                
+                <div id="player-data-panel" style="display: none" class="side-panels">
+                    <div id="player-data-panel-name-xp-lvl"></div>
+                    <div id="player-data-panel-stats">
+                        <div id="player-data-stats-1"></div>
+                        <div id="player-data-stats-2"></div>
+                    </div>
+                </div>
+                <div id="player-inventory" style="display: none" class="side-panels">
+                    <div id="player-equipped-gear-cont"></div>
+                    <div id="player-inventory-cont"></div>
+                </div>
             </div>
         </main>
         <footer>
