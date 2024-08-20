@@ -1,0 +1,27 @@
+:root {
+    --ps-color-main: #730100;
+    --ps-color-white: #fff;
+    --ps-color-black: #000;
+    --ps-padding: 10px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--ps-color-black);
+}
+
+h1, main > p:first-of-type {
+    text-align: center;
+    color: var(--ps-color-white);
+}
+
+#game-window {
+    padding: var(--ps-padding);
+    background-color: var(--ps-color-white);
+    max-width: 500px;
+    max-height: 400px;
+    margin: 30px auto 0;
+}
