@@ -2,7 +2,8 @@
     --ps-color-main: #730100;
     --ps-color-white: #fff;
     --ps-color-black: #000;
-    --ps-padding: 10px;
+    --ps-padding-standard: 10px;
+    --ps-margin-standard: 10px;
 }
 
 * {
@@ -19,9 +20,39 @@ h1, main > p:first-of-type {
 }
 
 #game-window {
-    padding: var(--ps-padding);
+    padding: var(--ps-padding-standard);
     background-color: var(--ps-color-white);
     max-width: 500px;
     max-height: 400px;
     margin: 30px auto 0;
 }
+
+#game-ui-header {
+    border: 1px solid var(--ps-color-black);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 55px;
+}
+
+/* Player upfront data and map location */
+
+#player-data-upfront-cont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#player-data-upfront-char-img {
+    border: 1px solid blue;
+    width: 55px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-location {
+    margin-right: var(--ps-margin-standard);
+}
+
