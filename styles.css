@@ -44,12 +44,28 @@ h1, main > p:first-of-type {
 }
 
 #player-data-upfront-char-img {
-    border: 1px solid blue;
+    border-right: 1px solid var(--ps-color-black);
     width: 55px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#player-data-upfront {
+    padding: 0 var(--ps-margin-standard);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    border-right: 1px solid black;
+    height: 100%;
+    border: 1px solid blue;
+}
+
+#player-data-upfront-name {
+    width: 100%;
+    border: 1px solid var(--ps-color-black);
 }
 
 #game-location {
