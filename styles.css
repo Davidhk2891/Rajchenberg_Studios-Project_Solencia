@@ -3,6 +3,7 @@
     --ps-color-white: #fff;
     --ps-color-black: #000;
     --ps-color-monster-stats: #c70d0d;
+    --ps-color-grey: #C2C2C2;
     --ps-padding-standard: 10px;
     --ps-margin-standard: 10px;
 }
@@ -24,7 +25,7 @@ h1, main > p:first-of-type {
     padding: var(--ps-padding-standard);
     background-color: var(--ps-color-white);
     max-width: 600px;
-    max-height: 400px;
+    max-height: 450px;
     margin: 30px auto 0;
 }
 
@@ -98,6 +99,9 @@ h1, main > p:first-of-type {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--ps-color-main);
+    color: var(--ps-color-white);
+    letter-spacing: 1.6px;
 }
 
 /* Monster stats */
@@ -113,3 +117,41 @@ h1, main > p:first-of-type {
     border-bottom: 1px solid var(--ps-color-black);
 }
 
+/* Player controls */
+#game-ui-controls {
+    display: flex;
+    flex-direction: column;
+}
+
+#game-controls-dynamic-nav-cont {
+    height: 70px;
+    background-color: var(--ps-color-main);
+    border-left: 1px solid var(--ps-color-black);
+    border-right: 1px solid var(--ps-color-black);
+    border-bottom: 1px solid var(--ps-color-black);
+}
+
+#game-controls-mixed-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:end;
+    background-color: var(--ps-color-grey);
+    border-left: 1px solid var(--ps-color-black);
+    border-right: 1px solid var(--ps-color-black);
+    border-bottom: 1px solid var(--ps-color-black);
+}
+
+#hp-cont, #mp-cont {
+    border: 1px solid blue;
+    width: 60px;
+    height: 80px;
+}
+
+#hp-meter, #mp-meter {
+    
+}
+ 
+#healing-skill-goptions-cont {
+
+}
