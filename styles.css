@@ -2,6 +2,7 @@
     --ps-color-main: #730100;
     --ps-color-white: #fff;
     --ps-color-black: #000;
+    --ps-color-monster-stats: #c70d0d;
     --ps-padding-standard: 10px;
     --ps-margin-standard: 10px;
 }
@@ -22,7 +23,7 @@ h1, main > p:first-of-type {
 #game-window {
     padding: var(--ps-padding-standard);
     background-color: var(--ps-color-white);
-    max-width: 500px;
+    max-width: 600px;
     max-height: 400px;
     margin: 30px auto 0;
 }
@@ -53,22 +54,62 @@ h1, main > p:first-of-type {
 }
 
 #player-data-upfront {
-    padding: 0 var(--ps-margin-standard);
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2px;
     border-right: 1px solid black;
     height: 100%;
-    border: 1px solid blue;
 }
 
 #player-data-upfront-name {
+    display: block;
     width: 100%;
-    border: 1px solid var(--ps-color-black);
+    border-bottom: 1px solid var(--ps-color-black);
+    margin-bottom: 6px;
+    text-align: center;
 }
 
-#game-location {
-    margin-right: var(--ps-margin-standard);
+#player-data-upfront-lvl-xp {
+    margin: 0 var(--ps-margin-standard);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+#game-location-cont {
+    height: 100%;
+    width: 80px;
+    border-left: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Game content */
+
+#game-ui-content {
+    border-left: 1px solid var(--ps-color-black);
+    border-right: 1px solid var(--ps-color-black);
+    border-bottom: 1px solid var(--ps-color-black);
+    padding: 16px;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Monster stats */
+#game-ui-monster-stats {
+    background-color: var(--ps-color-monster-stats);
+    color: var(--ps-color-white);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px;
+    border-left: 1px solid var(--ps-color-black);
+    border-right: 1px solid var(--ps-color-black);
+    border-bottom: 1px solid var(--ps-color-black);
 }
 
