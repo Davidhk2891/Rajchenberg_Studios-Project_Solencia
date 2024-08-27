@@ -4,6 +4,10 @@
     --ps-color-black: #000;
     --ps-color-monster-stats: #c70d0d;
     --ps-color-grey: #C2C2C2;
+    --ps-color-hp-gr-1: #f53527;
+    --ps-color-hp-gr-2: #510500;
+    --ps-color-mp-gr-1: #4bc6ec;
+    --ps-color-mp-gr-2: #0069ec;
     --ps-padding-standard: 10px;
     --ps-margin-standard: 10px;
 }
@@ -143,13 +147,36 @@ h1, main > p:first-of-type {
 }
 
 #hp-cont, #mp-cont {
-    border: 1px solid blue;
     width: 60px;
     height: 80px;
 }
 
+#hp-cont {
+  border-top: 1px solid var(--ps-color-black);
+  border-right: 1px solid var(--ps-color-black);
+}
+
+#mp-cont {
+  border-top: 1px solid var(--ps-color-black);
+  border-left: 1px solid var(--ps-color-black);
+}
+
 #hp-meter, #mp-meter {
-    
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--ps-color-white);
+    letter-spacing: 2px;
+}
+
+#hp-meter {
+  background-image: linear-gradient(to right, var(--ps-color-hp-gr-1), var(--ps-color-hp-gr-2));
+}
+
+#mp-meter {
+  background-image: linear-gradient(to right, var(--ps-color-mp-gr-1), var(--ps-color-mp-gr-2));
 }
  
 #healing-skill-goptions-cont {
