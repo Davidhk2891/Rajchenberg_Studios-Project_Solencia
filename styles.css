@@ -191,5 +191,5 @@ h1, main > p:first-of-type {
 }
  
 #healing-skill-goptions-cont {
-
+  border: 1px solid blueviolet; 
 }
