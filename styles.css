@@ -191,5 +191,6 @@ h1, main > p:first-of-type {
 }
  
 #healing-skill-goptions-cont {
-   /* Left here */
+   border: 1px solid black;
+   width: 25vw;
 }
