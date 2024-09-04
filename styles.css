@@ -129,10 +129,9 @@ h1, main > p:first-of-type {
 
 #game-controls-dynamic-nav-cont {
     height: 70px;
-    background-color: var(--ps-color-main);
+    background-color: var(--ps-color-grey);
     border-left: 1px solid var(--ps-color-black);
     border-right: 1px solid var(--ps-color-black);
-    border-bottom: 1px solid var(--ps-color-black);
 }
 
 #game-controls-mixed-panel {
@@ -191,6 +190,38 @@ h1, main > p:first-of-type {
 }
  
 #healing-skill-goptions-cont {
-   border: 1px solid black;
    width: 25vw;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
 }
+
+#healing-slots-cont, #game-options-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1px;
+    margin-right: 1px;
+}
+
+#healing-slot-1, #healing-slot-2 {
+    border: 1px dotted black;
+    width: 40px;
+    height: 40px;
+}
+
+#skill-cont {
+    border: 1px dotted black;
+    width: 50px;
+    min-width: 50px;
+    height: 60px;
+}
+
+#char-stats-cont, #inventory-cont {
+    border: 1px dotted black;
+    width: 40px;
+    height: 40px;
+    margin-left: 1px;
+}
+
