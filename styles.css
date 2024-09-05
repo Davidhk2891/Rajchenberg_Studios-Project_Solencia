@@ -206,20 +206,17 @@ h1, main > p:first-of-type {
 }
 
 #healing-slot-1, #healing-slot-2 {
-    border: 1px dotted black;
     width: 40px;
     height: 40px;
 }
 
 #skill-cont {
-    border: 1px dotted black;
     width: 50px;
     min-width: 50px;
     height: 60px;
 }
 
 #char-stats-cont, #inventory-cont {
-    border: 1px dotted black;
     width: 40px;
     height: 40px;
     margin-left: 1px;
