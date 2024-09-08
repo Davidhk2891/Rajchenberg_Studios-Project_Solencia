@@ -13,31 +13,100 @@
         <main>
 
             <h1>Project Solencia</h1>
-            <p>A limbo between the living, the dead</p>
+            <p>A strange place for us</p>
 
             <div id="game-window">
 
-                <div id="player-data-head">
-                    <img id="player-data-char-img" src="" width="" height="" alt="Player char face" />
-                    <div id="player-data-head">
-                        <strong><span id="player-data-head-name">Character</span></strong>
-                        <div id="player-data-head-lvl-xp">
-                            <span>Lvl: <strong><span id="lvl-text">1</span></strong></span>
-                            <span>Xp: <strong><span id="xp-text">0</span></strong></span>
+                <div id="game-ui-header">
+                    <div id="player-data-upfront-cont">
+                        <img id="player-data-upfront-char-img" src="./Assets/knight_face.png" alt="Player char face" />
+                        <div id="player-data-upfront">
+                            <strong><span id="player-data-upfront-name">Knight</span></strong>
+                            <div id="player-data-upfront-lvl-xp">
+                                <span>Lvl: <strong><span id="lvl-text">1</span></strong></span>
+                                <span>Xp: <strong><span id="xp-text">0</span></strong></span>
+                            </div>
                         </div>
+                    </div>
+                    <div id="game-location-cont">
+                        <p id="game-location">Fortress</p>
                     </div>
                 </div>
 
-                <div id="content"></div>
+                <div id="game-ui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                      enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                       ut aliquip ex ea commodo consequat.</div>
 
-                <div id="monster-stats">
+                <div id="game-ui-monster-stats">
                     <span>Monster: <strong><span id="monster-name-text"></span></strong></span>
                     <span>Health: <strong><span id="monster-health-text"></span></strong></span>
                 </div>
 
-                <div id="game-controls">
-                    <div id="game-controls-dynamic-nav-cont"></div>
-                    <div id="game-controls-mixed-panel"></div>
+                <div id="game-ui-controls">
+                    <div id="game-controls-dynamic-nav-cont">
+
+                    </div>
+                    <div id="game-controls-mixed-panel">
+
+                        <div id="hp-cont">
+                            <div id="hp-meter">
+                                <p id="hp">HP</p>
+                            </div>
+                        </div>
+
+                        <div id="healing-skill-goptions-cont">
+
+                            <div id="healing-slots-cont">
+                                <div id="healing-slot-1">
+                                    <img 
+                                        id="healing-slot-1-img" 
+                                        src="./Assets/consumable_slot_empty.gif"
+                                        width="100%"
+                                        height="100%"/>
+                                </div>
+                                <div id="healing-slot-2">
+                                    <img 
+                                        id="healing-slot-2-img"
+                                        src="./Assets/consumable_slot_empty.gif"
+                                        width="100%"
+                                        height="100%" /> 
+                                </div>
+                            </div>
+
+                            <div id="skill-cont">
+                                <img 
+                                    id="skill-img"
+                                    src="./Assets/skill_slot.png"
+                                    width="100%"
+                                    height="100%" />
+                            </div>
+
+                            <div id="game-options-cont">
+                                <div id="char-stats-cont">
+                                    <img 
+                                        id="char-stats-img"
+                                        src="./Assets/char_stats_img.png"
+                                        width="100%"
+                                        height="100%" />
+                                </div>
+                                <div id="inventory-cont">
+                                    <img 
+                                        id="inventory-img"
+                                        src="./Assets/inventory_img.png"
+                                        width="100%"
+                                        height="100%" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="mp-cont">
+                            <div id="mp-meter">
+                                <p id="mp">MP</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div id="player-data-panel" style="display: none" class="side-panels">

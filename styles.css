@@ -1,0 +1,224 @@
+:root {
+    --ps-color-main: #730100;
+    --ps-color-white: #fff;
+    --ps-color-black: #000;
+    --ps-color-monster-stats: #c70d0d;
+    --ps-color-grey: #C2C2C2;
+    --ps-color-hp-gr-1: #f53527;
+    --ps-color-hp-gr-2: #510500;
+    --ps-color-mp-gr-1: #4bc6ec;
+    --ps-color-mp-gr-2: #0069ec;
+    --ps-padding-standard: 10px;
+    --ps-margin-standard: 10px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--ps-color-black);
+}
+
+h1, main > p:first-of-type {
+    text-align: center;
+    color: var(--ps-color-white);
+}
+
+#game-window {
+    padding: var(--ps-padding-standard);
+    background-color: var(--ps-color-white);
+    max-width: 600px;
+    max-height: 450px;
+    margin: 30px auto 0;
+}
+
+#game-ui-header {
+    border: 1px solid var(--ps-color-black);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 55px;
+}
+
+/* Player upfront data and map location */
+
+#player-data-upfront-cont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#player-data-upfront-char-img {
+    border-right: 1px solid var(--ps-color-black);
+    width: 55px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#player-data-upfront {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    border-right: 1px solid black;
+    height: 100%;
+}
+
+#player-data-upfront-name {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid var(--ps-color-black);
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+#player-data-upfront-lvl-xp {
+    margin: 0 var(--ps-margin-standard);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+#game-location-cont {
+    height: 100%;
+    width: 80px;
+    border-left: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Game content */
+
+#game-ui-content {
+    border-left: 1px solid var(--ps-color-black);
+    border-right: 1px solid var(--ps-color-black);
+    border-bottom: 1px solid var(--ps-color-black);
+    padding: 16px;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--ps-color-main);
+    color: var(--ps-color-white);
+    letter-spacing: 1.6px;
+}
+
+/* Monster stats */
+#game-ui-monster-stats {
+    background-color: var(--ps-color-monster-stats);
+    color: var(--ps-color-white);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px;
+    border-left: 1px solid var(--ps-color-black);
+    border-right: 1px solid var(--ps-color-black);
+    border-bottom: 1px solid var(--ps-color-black);
+}
+
+/* Player controls */
+#game-ui-controls {
+    display: flex;
+    flex-direction: column;
+}
+
+#game-controls-dynamic-nav-cont {
+    height: 70px;
+    background-color: var(--ps-color-grey);
+    border-left: 1px solid var(--ps-color-black);
+    border-right: 1px solid var(--ps-color-black);
+}
+
+#game-controls-mixed-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:end;
+    background-color: var(--ps-color-grey);
+    border-left: 1px solid var(--ps-color-black);
+    border-right: 1px solid var(--ps-color-black);
+    border-bottom: 1px solid var(--ps-color-black);
+}
+
+#hp-cont, #mp-cont {
+    width: 60px;
+    height: 60px;
+}
+
+#hp-cont {
+    border-top: 1px solid var(--ps-color-black);
+    border-right: 1px solid var(--ps-color-black);
+}
+
+#mp-cont {
+    border-top: 1px solid var(--ps-color-black);
+    border-left: 1px solid var(--ps-color-black);
+}
+
+#hp-cont {
+  border-top: 1px solid var(--ps-color-black);
+  border-right: 1px solid var(--ps-color-black);
+}
+
+#mp-cont {
+  border-top: 1px solid var(--ps-color-black);
+  border-left: 1px solid var(--ps-color-black);
+}
+
+#hp-meter, #mp-meter {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--ps-color-white);
+    letter-spacing: 2px;
+}
+
+#hp-meter {
+    background-image: linear-gradient(to right, var(--ps-color-hp-gr-1), var(--ps-color-hp-gr-2));
+}
+
+#mp-meter {
+  background-image: linear-gradient(to right, var(--ps-color-mp-gr-1), var(--ps-color-mp-gr-2));
+
+}
+ 
+#healing-skill-goptions-cont {
+   width: 25vw;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+
+#healing-slots-cont, #game-options-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1px;
+    margin-right: 1px;
+}
+
+#healing-slot-1, #healing-slot-2 {
+    width: 40px;
+    height: 40px;
+}
+
+#skill-cont {
+    width: 50px;
+    min-width: 50px;
+    height: 60px;
+}
+
+#char-stats-cont, #inventory-cont {
+    width: 40px;
+    height: 40px;
+    margin-left: 1px;
+}
+
