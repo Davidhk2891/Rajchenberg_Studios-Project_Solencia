@@ -43,3 +43,35 @@ const mobs = [
         life: 525
     }
 ];
+
+function fightCreeper() {
+
+}
+
+function fightScorchling() {
+
+}
+
+function fightBrute() {
+
+}
+
+function fightGnarl() {
+
+}
+
+function fightEliteBrute() {
+
+}
+
+function fightSeer() {
+
+}
+
+function fightOgre() {
+
+}
+
+function fightBoneClaw() {
+    
+}
