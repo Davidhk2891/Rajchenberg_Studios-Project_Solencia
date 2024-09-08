@@ -148,16 +148,7 @@ h1, main > p:first-of-type {
 #hp-cont, #mp-cont {
     width: 60px;
     height: 60px;
-}
-
-#hp-cont {
-    border-top: 1px solid var(--ps-color-black);
-    border-right: 1px solid var(--ps-color-black);
-}
-
-#mp-cont {
-    border-top: 1px solid var(--ps-color-black);
-    border-left: 1px solid var(--ps-color-black);
+    background-image: url(./Assets/border-decor.png);
 }
 
 #hp-cont {
@@ -189,14 +180,14 @@ h1, main > p:first-of-type {
 
 }
  
-#healing-skill-goptions-cont {
+#consumable-skill-goptions-cont {
    width: 25vw;
    display: flex;
    flex-direction: row;
    justify-content: center;
 }
 
-#healing-slots-cont, #game-options-cont {
+#consumable-slots-cont, #game-options-cont {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -205,15 +196,21 @@ h1, main > p:first-of-type {
     margin-right: 1px;
 }
 
-#healing-slot-1, #healing-slot-2 {
+#consumable-slot-1, #consumable-slot-2 {
     width: 40px;
     height: 40px;
 }
 
-#skill-cont {
+#skill-slot {
     width: 50px;
     min-width: 50px;
     height: 60px;
+    min-height: 60px;
+}
+
+#skill-img {
+    width: 100%;
+    height: 100%;
 }
 
 #char-stats-cont, #inventory-cont {

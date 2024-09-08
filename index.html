@@ -6,6 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Project Solencia</title>
         <link rel="stylesheet" href="./styles.css"/>
+        <script src="./constants/constants_rates.js" defer></script>
+        <script src="./constants/constants_shop.js" defer></script>
+        <script src="./weapons/weapons.js" defer></script>
+        <script src="./mob/mobs.js" defer></script>
+        <script src="./player/player.js" defer></script>
         <script src="./script.js" defer></script>
     </head>
 
@@ -29,7 +34,7 @@
                         </div>
                     </div>
                     <div id="game-location-cont">
-                        <p id="game-location">Fortress</p>
+                        <p id="game-map-location">Fortress</p>
                     </div>
                 </div>
 
@@ -38,7 +43,9 @@
                       enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
                        ut aliquip ex ea commodo consequat.</div>
 
-                <div id="game-ui-monster-stats">
+                <div 
+                    id="game-ui-monster-stats"
+                    style="display: none;">
                     <span>Monster: <strong><span id="monster-name-text"></span></strong></span>
                     <span>Health: <strong><span id="monster-health-text"></span></strong></span>
                 </div>
@@ -55,31 +62,29 @@
                             </div>
                         </div>
 
-                        <div id="healing-skill-goptions-cont">
+                        <div id="consumable-skill-goptions-cont">
 
-                            <div id="healing-slots-cont">
-                                <div id="healing-slot-1">
+                            <div id="consumable-slots-cont">
+                                <div id="consumable-slot-1">
                                     <img 
-                                        id="healing-slot-1-img" 
+                                        id="consumable-slot-1-img" 
                                         src="./Assets/consumable_slot_empty.gif"
                                         width="100%"
                                         height="100%"/>
                                 </div>
-                                <div id="healing-slot-2">
+                                <div id="consumable-slot-2">
                                     <img 
-                                        id="healing-slot-2-img"
+                                        id="consumable-slot-2-img"
                                         src="./Assets/consumable_slot_empty.gif"
                                         width="100%"
                                         height="100%" /> 
                                 </div>
                             </div>
 
-                            <div id="skill-cont">
+                            <div id="skill-slot">
                                 <img 
                                     id="skill-img"
-                                    src="./Assets/skill_slot.png"
-                                    width="100%"
-                                    height="100%" />
+                                    src="./Assets/border-decor.png" />
                             </div>
 
                             <div id="game-options-cont">
