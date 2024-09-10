@@ -43,7 +43,9 @@ const locations = [
     },
     {
         name: "Dungeon",
-        "button text": 
+        "button text": ,
+        "button functions": ,
+        text:
     }
 ]
 
