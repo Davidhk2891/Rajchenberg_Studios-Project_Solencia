@@ -41,6 +41,16 @@ const mobs = [
         name : "Boneclaw",
         level: 19,
         life: 525
+    },
+    {
+        name : "Sludge",
+        level: 25,
+        life: 750
+    },
+    {
+        name : "Gazer",
+        level: 28,
+        life: 850
     }
 ];
 
@@ -73,5 +83,13 @@ function fightOgre() {
 }
 
 function fightBoneClaw() {
-    
+
+}
+
+function fightSludge() {
+
+}
+
+function fightGazer() {
+
 }

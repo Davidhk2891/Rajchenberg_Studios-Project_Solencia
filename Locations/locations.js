@@ -43,9 +43,9 @@ const locations = [
     },
     {
         name: "Dungeon",
-        "button text": ,
-        "button functions": ,
-        text:
+        "button text": ["Fight Seer", "Fight Boneclaw", "Fight Sludge", "Fight Gazer"],
+        "button functions": [fightSeer, fightBoneClaw, fightSludge, fightGazer],
+        text: "You notice that a grave is dug up and it looks like the entrance to a cave. For some reason, you decide to jump into it. You can no longer taste the bad smell. However, you do see the undead and horrid creatures guarding this place. They see you now. You also realize the screams where coming from here."
     }
 ]
 

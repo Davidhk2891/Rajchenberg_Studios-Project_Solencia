@@ -5,13 +5,29 @@ let gold = 50;
 let inventory = ["Small Axe"];
 
 function updatePlayer() {
-    
+
 }
 
 function attack() {
 
 }
 
-function dodge() {
+function specialAttack() {
 
+}
+
+function flee() {
+
+}
+
+function loot() {
+
+}
+
+function leave() {
+
+}
+
+function revive() {
+    
 }
