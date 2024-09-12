@@ -23,12 +23,12 @@ function updatePlayer(location) {
         
     */
    gameUIMonsterStats.style.display = 'none';
-   let locationActionsArrLength = locations["button text"].length;
-   for (let i = 0; i <= locationActionsArrLength; i++) {
-    i++;
+   let locationBtnNamesArrLength = location["button text"].length;
+   for (let i = 0; i <= locationBtnNamesArrLength; i++) {
     gameControlsDynamicNavCont.innerHTML += `
-        <button id="button_one"></button>
+        <button id="button_one" onclick="${location["button functions"][i]}">${location["button text"][i]}</button>        
     `;
+    gameUIContent.innerText = location.text;
    }
 }
 

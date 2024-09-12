@@ -31,3 +31,6 @@ let skillSlot = document.querySelector('#skill-slot');
 let charStatsCont = document.querySelector('#char-stats-cont');
 let inventoryCont = document.querySelector('#inventory-cont');
 
+// Run game
+updatePlayer(locations[0]);
+
