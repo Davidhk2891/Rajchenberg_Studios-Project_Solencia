@@ -2,7 +2,7 @@ const locations = [
     {
         name: "Fortress",
         "button text": ["Blacksmith", "General store", "Fortress outskirts"],
-        "button functions": [goBlacksmith(), goGeneralStore(), goFortressOutskirts()],
+        "button functions": [goBlacksmith, goGeneralStore, goFortressOutskirts],
         text: "You are in the Fortress. You see a sign that says 'General Store'. You also see an entrance to a cave far in the horizon"
     },
     {
@@ -54,15 +54,15 @@ function goFortress() {
 }
 
 function goBlacksmith() {
-
+    console.log("You are in the Blacksmith shop");
 }
 
 function goGeneralStore() {
-
+    console.log("You are in the General Store");
 }
 
 function goFortressOutskirts() {
-
+    console.log("You are in the Fortress outskirts");
 }
 
 function goSolenciaPlains() {

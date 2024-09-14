@@ -4,6 +4,33 @@ let life = 100;
 let gold = 50;
 let inventory = ["Small Axe"];
 
+const states = [
+    {
+        name: "Fight mob",
+        "button text": ["Attack", "Special attack", "Flee"],
+        "button functions": [attack, specialAttack, flee],
+        text: "You get into your fighting stance and engage the enemy."
+    },
+    {
+        name: "Kill mob",
+        "button text": ["Loot", "Leave"],
+        "button functions": [loot, leave],
+        "text": "The slain mob screams in agonizing pain. As it falls, its soul leaves it body and the corpse seems to get swallowed by the soil."
+    },
+    {
+        name: "Die",
+        "button text": ["Get another chance"],
+        "button functions": [revive],
+        text: "YOU DIED"
+    },
+    {
+        name: "Respawn",
+        "button text": ["Blacksmith", "General store", "Fortress outskirts"],
+        "button functions": [goBlacksmith, goGeneralStore, goFortressOutskirts],
+        text: "You wake up dizzy and disoriented. It seems like you are back in the fortress. You wonder why you are still alive."
+    }
+];
+
 function updatePlayer(location) {
     // Pseudo code
 
@@ -23,11 +50,14 @@ function updatePlayer(location) {
         
     */
    gameUIMonsterStats.style.display = 'none';
-   let locationBtnNamesArrLength = location["button text"].length;
+   let locationBtnNamesArrLength = location["button text"].length - 1;
    for (let i = 0; i <= locationBtnNamesArrLength; i++) {
     gameControlsDynamicNavCont.innerHTML += `
-        <button id="button_one" onclick="${location["button functions"][i]}">${location["button text"][i]}</button>        
+        <button id="button${i}">${location["button text"][i]}</button>        
     `;
+    document.querySelector(`#button${i}`).addEventListener('click', function(){
+        location["button functions"][i]();
+    });
     gameUIContent.innerText = location.text;
    }
 }
