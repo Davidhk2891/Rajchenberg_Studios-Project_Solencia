@@ -1,0 +1,19 @@
+/* 
+// Create dynamic buttons within a predetermined div from html 
+
+// Create a new button element
+let button = document.createElement('button');
+button.innerText = location["button text"][i];
+button.id = `button${i}`;
+
+// Append the button to the container
+gameControlsDynamicNavCont.appendChild(button);
+
+// Add en event listener to each button to invoke the corresponding function
+button.addEventListener('click', function(){
+    location["button functions"][i]();
+});
+}
+// Add current location's text to the game UI content
+gameUIContent.innerText = location.text;
+*/

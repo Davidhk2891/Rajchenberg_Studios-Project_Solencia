@@ -52,14 +52,23 @@ function updatePlayer(location) {
    gameUIMonsterStats.style.display = 'none';
    let locationBtnNamesArrLength = location["button text"].length - 1;
    for (let i = 0; i <= locationBtnNamesArrLength; i++) {
-    gameControlsDynamicNavCont.innerHTML += `
-        <button id="button${i}">${location["button text"][i]}</button>        
-    `;
-    document.querySelector(`#button${i}`).addEventListener('click', function(){
+
+    // Create button element
+    let button = document.createElement('button');
+    button.innerText = location["button text"][i];
+    button.id = `button${i}`;
+
+    // Append button to predetermined div element
+    gameControlsDynamicNavCont.appendChild(button);
+
+    // Add event listener to newly create x button
+    button.addEventListener('click', function(){
         location["button functions"][i]();
     });
-    gameUIContent.innerText = location.text;
    }
+
+   // Add location text
+   gameUIContent.innerText = location.text;
 }
 
 function attack() {
