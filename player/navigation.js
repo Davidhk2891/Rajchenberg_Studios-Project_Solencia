@@ -49,20 +49,49 @@ const locations = [
     }
 ]
 
+function updatePlayer(location) {
+   
+    // I need to clear the buttons before reloading them
+    gameControlsDynamicNavCont.innerHTML = " ";
+
+   gameUIMonsterStats.style.display = 'none';
+
+   let locationBtnNamesArrLength = location["button text"].length - 1;
+   for (let i = 0; i <= locationBtnNamesArrLength; i++) {
+
+    // Create button element
+    let button = document.createElement('button');
+    button.innerText = location["button text"][i];
+    button.id = `button${i}`;
+
+    // Append button to predetermined div element
+    gameControlsDynamicNavCont.appendChild(button);
+
+    // Add event listener to newly create x button
+    button.addEventListener('click', function(){
+        location["button functions"][i]();
+    });
+   }
+
+   // Add location text
+   gameUIContent.innerText = location.text;
+}
+
+// World navigation
 function goFortress() {
-    
+    updatePlayer(locations[0]); 
 }
 
 function goBlacksmith() {
-    console.log("You are in the Blacksmith shop");
+    updatePlayer(locations[1]);
 }
 
 function goGeneralStore() {
-    console.log("You are in the General Store");
+    
 }
 
 function goFortressOutskirts() {
-    console.log("You are in the Fortress outskirts");
+    
 }
 
 function goSolenciaPlains() {

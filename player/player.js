@@ -31,46 +31,7 @@ const states = [
     }
 ];
 
-function updatePlayer(location) {
-    // Pseudo code
-
-    // Here is what you need to do:
-    /* 
-        1) Understand where the user wants to go. Let's say to fortress outskirts
-        2) Hide the monster stats bar
-        3) Get the amount of text items in the button text array
-        4) based on that, you need to loop over the length of the array and for each iteration
-            you need to create a button already with the proper style and set the corresponding
-            button text and button function to such button. In the style you need to flex-box it horizontally
-            and set a max-width such that the buttons do not go over the limits of the board.
-        5) Per each iteration, concatenate the current button to the previous one using template literals.
-        6) At the end of the iteration, you need to hook up an event listener to such button.
-        7) updatePlayer() is going to run once as soon as the game is fired up. The default location it will
-            place the player in will need to run this script as well to set the player in the Fortress.
-        
-    */
-   gameUIMonsterStats.style.display = 'none';
-   let locationBtnNamesArrLength = location["button text"].length - 1;
-   for (let i = 0; i <= locationBtnNamesArrLength; i++) {
-
-    // Create button element
-    let button = document.createElement('button');
-    button.innerText = location["button text"][i];
-    button.id = `button${i}`;
-
-    // Append button to predetermined div element
-    gameControlsDynamicNavCont.appendChild(button);
-
-    // Add event listener to newly create x button
-    button.addEventListener('click', function(){
-        location["button functions"][i]();
-    });
-   }
-
-   // Add location text
-   gameUIContent.innerText = location.text;
-}
-
+// Abilities
 function attack() {
 
 }

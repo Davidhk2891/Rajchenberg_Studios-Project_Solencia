@@ -1,3 +1,7 @@
 // Run game
-updatePlayer(locations[0]);
+function runGame() {
+    goFortress();
+}
+
+runGame();
 
