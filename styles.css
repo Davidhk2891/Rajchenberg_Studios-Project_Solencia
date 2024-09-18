@@ -19,6 +19,12 @@
 body {
     background-color: var(--ps-color-black);
     font-family: monospace;
+    letter-spacing: 1.6px;
+}
+
+button {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 h1, main > p:first-of-type {
@@ -30,7 +36,7 @@ h1, main > p:first-of-type {
     padding: var(--ps-padding-standard);
     background-color: var(--ps-color-white);
     max-width: 600px;
-    max-height: 450px;
+    max-height: 550px;
     margin: 30px auto 0;
 }
 
@@ -43,7 +49,6 @@ h1, main > p:first-of-type {
 }
 
 /* Player upfront data and map location */
-
 #player-data-upfront-cont {
     display: flex;
     flex-direction: row;
@@ -71,8 +76,9 @@ h1, main > p:first-of-type {
 #player-data-upfront-name {
     display: block;
     width: 100%;
+    height: 100%;
     border-bottom: 1px solid var(--ps-color-black);
-    margin-bottom: 6px;
+    margin-bottom: 3px;
     text-align: center;
 }
 
@@ -86,26 +92,30 @@ h1, main > p:first-of-type {
 
 #game-location-cont {
     height: 100%;
-    width: 80px;
+    width: 115px;
     border-left: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-wrap: wrap;
+}
+
+#game-map-location {
+    text-align: center;
 }
 
 /* Game content */
-
 #game-content-components {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 30vh;
 }
 
 #player-data-panel, #player-inventory{
-    width: 300px;
-    max-width: 300px;
+    width: 350px;
+    max-width: 350px;
     height: 100%;
     display: inline;
     background-color: var(--ps-color-hp-gr-2);
@@ -119,13 +129,16 @@ h1, main > p:first-of-type {
     border-right: 1px solid var(--ps-color-black);
     border-bottom: 1px solid var(--ps-color-black);
     padding: 16px;
+    width: 1000px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--ps-color-main);
     color: var(--ps-color-white);
-    letter-spacing: 1.6px;
+    line-height: 24px;
+    overflow: scroll;
+    scrollbar-color: var(--ps-color-hp-gr-2);
 }
 
 /* Monster stats */
@@ -246,12 +259,12 @@ h1, main > p:first-of-type {
     align-items: center;
     gap: 20px;
     max-width: inherit;
+    padding: 0 10px;
 }
 
 #game-controls-dynamic-nav-cont > button {
     background-color: var(--ps-color-hp-gr-1);
     color: var(--ps-color-white);
-    padding: 0 4px;
-    height: 27px;
+    padding: 3px 5px;
 }
 

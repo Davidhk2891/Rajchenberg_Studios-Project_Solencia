@@ -25,38 +25,39 @@ const locations = [
     },
     {
         name: "Solencia Plains",
-        "button text": ["Fight Brute", "Fight Gnarl", "Fight Elite Brute", "Go back to Fortress Outskirts", "To the Quiet forest"],
+        "button text": ["Fight Brute", "Fight Gnarl", "Fight Elite Brute", "Back to Fortress Outskirts", "To Quiet forest"],
         "button functions": [fightBrute, fightGnarl, fightEliteBrute, goFortressOutskirts, goQuietForest],
         text: "You keep walking and reach the Solencia Plains. It looks pretty. And it'd be perfect for a picnic... If it wasn't for the messed up creatures roaming around and looking for easy prey."
     },
     {
         name: "Quiet Forest",
-        "button text": ["Fight Elite Brute", "Fight Ogre", "Go back to Solencia Plains", "To the Putrid Graveyard"],
+        "button text": ["Fight Elite Brute", "Fight Ogre", "Back to Solencia Plains", "To Putrid Graveyard"],
         "button functions": [fightEliteBrute, fightOgre, goSolenciaPlains, goPutridGraveyard],
         text: "You reach the infamous Quiet Forest. As rumored, it is indeed dead quiet. The only noises you can identify are those of the horrid creatures lurking between the tall trees. You see them from afar. A shivering feeling rushes down your spine. You feel cold. You carry on."
     },
     {
         name: "Putrid Graveyard",
-        "button text": ["Fight Seer", "Fight Boneclaw", "Go back to the Quiet Forest", "to the Dungeon"],
+        "button text": ["Fight Seer", "Fight Boneclaw", "Back to Quiet Forest", "To Dungeon"],
         "button functions": [fightSeer, fightBoneClaw, goQuietForest, goDungeon],
         text: "As you walk with your weapon drawn, you step onto some bones. you look up and see nothing but graves. The crackling sounds alert the undead. You are sweating cold and piss your pants. You also hear screams coming out of a cave up north. Also the smell... Did I mention the smell?"
     },
     {
         name: "Dungeon",
-        "button text": ["Fight Seer", "Fight Boneclaw", "Fight Sludge", "Fight Gazer"],
-        "button functions": [fightSeer, fightBoneClaw, fightSludge, fightGazer],
+        "button text": ["Fight Seer", "Fight Boneclaw", "Fight Sludge", "Fight Gazer", "Back to Putrid graveyard"],
+        "button functions": [fightSeer, fightBoneClaw, fightSludge, fightGazer, goPutridGraveyard],
         text: "You notice that a grave is dug up and it looks like the entrance to a cave. For some reason, you decide to jump into it. You can no longer taste the bad smell. However, you do see the undead and horrid creatures guarding this place. They see you now. You also realize the screams where coming from here."
     }
 ]
 
 function updatePlayerLocation(location) {
    
-    // I need to clear the buttons before reloading them
+    // Clear the buttons before reloading them
     gameControlsDynamicNavCont.innerHTML = " ";
 
    gameUIMonsterStats.style.display = 'none';
 
    let locationBtnNamesArrLength = location["button text"].length - 1;
+
    for (let i = 0; i <= locationBtnNamesArrLength; i++) {
 
     // Create button element
@@ -66,6 +67,9 @@ function updatePlayerLocation(location) {
 
     // Append button to predetermined div element
     gameControlsDynamicNavCont.appendChild(button);
+
+    // Update map name to UI
+    gameMapLocation.innerText = location.name;
 
     // Add event listener to newly create x button
     button.addEventListener('click', function(){
@@ -91,21 +95,21 @@ function goGeneralStore() {
 }
 
 function goFortressOutskirts() {
-    
+    updatePlayerLocation(locations[3]);
 }
 
 function goSolenciaPlains() {
-
+    updatePlayerLocation(locations[4]);
 }
 
 function goQuietForest() {
-
+    updatePlayerLocation(locations[5]);
 }
 
 function goPutridGraveyard() {
-
+    updatePlayerLocation(locations[6]);
 }
 
 function goDungeon() {
-
+    updatePlayerLocation(locations[7]);
 }
