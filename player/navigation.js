@@ -49,7 +49,7 @@ const locations = [
     }
 ]
 
-function updatePlayer(location) {
+function updatePlayerLocation(location) {
    
     // I need to clear the buttons before reloading them
     gameControlsDynamicNavCont.innerHTML = " ";
@@ -79,15 +79,15 @@ function updatePlayer(location) {
 
 // World navigation
 function goFortress() {
-    updatePlayer(locations[0]); 
+    updatePlayerLocation(locations[0]); 
 }
 
 function goBlacksmith() {
-    updatePlayer(locations[1]);
+    updatePlayerLocation(locations[1]);
 }
 
 function goGeneralStore() {
-    
+    updatePlayerLocation(locations[2]);
 }
 
 function goFortressOutskirts() {

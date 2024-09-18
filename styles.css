@@ -95,12 +95,31 @@ h1, main > p:first-of-type {
 
 /* Game content */
 
+#game-content-components {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 30vh;
+}
+
+#player-data-panel, #player-inventory{
+    width: 300px;
+    max-width: 300px;
+    height: 100%;
+    display: inline;
+    background-color: var(--ps-color-hp-gr-2);
+    color: var(--ps-color-white);
+    font-size: 0.65rem;
+    text-align: center;
+}
+
 #game-ui-content {
     border-left: 1px solid var(--ps-color-black);
     border-right: 1px solid var(--ps-color-black);
     border-bottom: 1px solid var(--ps-color-black);
     padding: 16px;
-    height: 20vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -232,7 +251,7 @@ h1, main > p:first-of-type {
 #game-controls-dynamic-nav-cont > button {
     background-color: var(--ps-color-hp-gr-1);
     color: var(--ps-color-white);
-    padding: 0 8px;
-    height: 35px;
+    padding: 0 4px;
+    height: 27px;
 }
 

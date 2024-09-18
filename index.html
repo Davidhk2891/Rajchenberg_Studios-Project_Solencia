@@ -7,7 +7,8 @@
         <title>Project Solencia</title>
         <link rel="stylesheet" href="./styles.css"/>
         <link rel="shortcut icon" href="#" />
-        <script src="./domElements.js" defer></script>
+        <script src="./constants/constants_domElements.js" defer></script>
+        <script src="./constants/constants_inventory.js" defer></script>
         <script src="./constants/constants_rates.js" defer></script>
         <script src="./constants/constants_shop.js" defer></script>
         <script src="./data/items/consumables/consumables.js" defer></script>
@@ -42,8 +43,25 @@
                     </div>
                 </div>
 
-                <div id="game-ui-content">
-
+                <div id="game-content-components">
+                    <div id="player-data-panel" class="side-panels">
+                        <p>Player stats</p>
+                        <div id="player-data-panel-name-xp-lvl"></div>
+                        <div id="player-data-panel-stats">
+                            <div id="player-data-stats-1"></div>
+                            <div id="player-data-stats-2"></div>
+                        </div>
+                    </div>
+    
+                    <div id="game-ui-content">
+    
+                    </div>
+    
+                    <div id="player-inventory" class="side-panels">
+                        <p>Inventory</p>
+                        <div id="player-equipped-gear-cont"></div>
+                        <div id="player-inventory-cont"></div>
+                    </div>
                 </div>
 
                 <div 
@@ -117,18 +135,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div id="player-data-panel" style="display: none" class="side-panels">
-                    <div id="player-data-panel-name-xp-lvl"></div>
-                    <div id="player-data-panel-stats">
-                        <div id="player-data-stats-1"></div>
-                        <div id="player-data-stats-2"></div>
-                    </div>
-                </div>
-                <div id="player-inventory" style="display: none" class="side-panels">
-                    <div id="player-equipped-gear-cont"></div>
-                    <div id="player-inventory-cont"></div>
                 </div>
             </div>
         </main>
