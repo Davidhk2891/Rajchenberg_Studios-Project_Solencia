@@ -37,9 +37,20 @@ const states = [
     }
 ];
 
-// Abilities
-function attack() {
+function updatePlayerState(state) {
+    // You need to do the same approach here that you did with updatePlayerLocation
+}
 
+function engage() {
+    updatePlayerState()
+}
+
+function attack() {
+    // Let's do the basic attack function following the pseudo code written in the GDD
+    // circular dependency issue. What to do?
+    // Refactor and decouple code with a controller. Explain the whole issue to chatGPT and ask how to refactor and decouple.
+    // Write down in your JS notes in the 'Good practices' section on how to build scalable web apps and web games with a controller
+    // This means architecture: Model-View-Controller (MVP), Model-View-viewModel (MVVP), Model-View-Presenter (MVP)
 }
 
 function specialAttack() {

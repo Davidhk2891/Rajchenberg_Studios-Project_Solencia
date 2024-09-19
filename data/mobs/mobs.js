@@ -1,4 +1,4 @@
-let currentMonster = 0;
+let currentMonster;
 let monsterLife;
 
 const mobs = [
@@ -55,41 +55,42 @@ const mobs = [
 ];
 
 function fightCreeper() {
-
+    currentMonster = 0;
+    engage(currentMonster);
 }
 
 function fightScorchling() {
-
+    currentMonster = 1;
 }
 
 function fightBrute() {
-
+    currentMonster = 2;
 }
 
 function fightGnarl() {
-
+    currentMonster = 3;
 }
 
 function fightEliteBrute() {
-
+    currentMonster = 4;
 }
 
 function fightSeer() {
-
+    currentMonster = 5;
 }
 
 function fightOgre() {
-
+    currentMonster = 6;
 }
 
 function fightBoneClaw() {
-
+    currentMonster = 7;
 }
 
 function fightSludge() {
-
+    currentMonster = 8;
 }
 
 function fightGazer() {
-
+    currentMonster = 9;
 }
