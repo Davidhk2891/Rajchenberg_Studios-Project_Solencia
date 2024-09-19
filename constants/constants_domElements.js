@@ -17,6 +17,10 @@ const monsterHealthText = document.querySelector('#monster-health-text');
 const hpMeter = document.getElementById('hp-meter');
 const mpMeter = document.getElementById('mp-meter');
 
+    // Player data and inventory windows
+const playerDataWindow = document.querySelector('#player-data-panel');
+const playerInvWindow = document.querySelector('#player-inventory');
+
     // Dynamic controls
 const gameControlsDynamicNavCont = document.querySelector('#game-controls-dynamic-nav-cont');
 

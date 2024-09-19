@@ -117,7 +117,7 @@ h1, main > p:first-of-type {
     width: 350px;
     max-width: 350px;
     height: 100%;
-    display: inline;
+    display: none;
     background-color: var(--ps-color-hp-gr-2);
     color: var(--ps-color-white);
     font-size: 0.65rem;
@@ -268,3 +268,6 @@ h1, main > p:first-of-type {
     padding: 3px 5px;
 }
 
+#char-stats-cont, #inventory-cont {
+    cursor: pointer;
+}
