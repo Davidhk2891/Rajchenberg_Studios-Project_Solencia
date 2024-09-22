@@ -7,15 +7,22 @@
         <title>Project Solencia</title>
         <link rel="stylesheet" href="./styles.css"/>
         <link rel="shortcut icon" href="#" />
-        <script src="./constants/constants_domElements.js" defer></script>
-        <script src="./constants/constants_inventory.js" defer></script>
-        <script src="./constants/constants_rates.js" defer></script>
-        <script src="./constants/constants_shop.js" defer></script>
-        <script src="./data/items/consumables/consumables.js" defer></script>
-        <script src="./data/items/weapons/weapons.js" defer></script>
-        <script src="./data/mobs/mobs.js" defer></script>
-        <script src="./player/navigation.js" defer></script>
-        <script src="./player/player.js" defer></script>
+        <script src="./utils/logger.js" defer></script>
+        <script src="./constants/domElements.js" defer></script>
+        <script src="./constants/inventory.js" defer></script>
+        <script src="./constants/rates.js" defer></script>
+        <script src="./constants/shop.js" defer></script>
+        <script src="./model/items/consumables.js" defer></script>
+        <script src="./model/items/weapons.js" defer></script>
+        <script src="./model/mobs/mobs.js" defer></script>
+        <script src="./model/locationsModel.js" defer></script>
+        <script src="./model/player.js" defer></script>
+        <script src="./controller/statsController.js" defer></script>
+        <script src="./controller/inventoryController.js" defer></script>
+        <script src="./controller/gameController.js" defer></script>
+        <script src="./view/statsView.js" defer></script>
+        <script src="./view/inventoryView.js" defer></script>
+        <script src="./view/gameView.js" defer></script>
         <script src="./script.js" defer></script>
     </head>
 
@@ -29,7 +36,7 @@
 
                 <div id="game-ui-header">
                     <div id="player-data-upfront-cont">
-                        <img id="player-data-upfront-char-img" src="./Assets/knight_face.png" alt="Player char face" />
+                        <img id="player-data-upfront-char-img" src="./Assets/images/knight_face.png" alt="Player char face" />
                         <div id="player-data-upfront">
                             <strong><span id="player-data-upfront-name">Knight</span></strong>
                             <div id="player-data-upfront-lvl-xp">
@@ -93,14 +100,14 @@
                                 <div id="consumable-slot-1">
                                     <img 
                                         id="consumable-slot-1-img" 
-                                        src="./Assets/consumable_slot_empty.gif"
+                                        src="./Assets/images/consumable_slot_empty.gif"
                                         width="100%"
                                         height="100%"/>
                                 </div>
                                 <div id="consumable-slot-2">
                                     <img 
                                         id="consumable-slot-2-img"
-                                        src="./Assets/consumable_slot_empty.gif"
+                                        src="./Assets/images/consumable_slot_empty.gif"
                                         width="100%"
                                         height="100%" /> 
                                 </div>
@@ -109,21 +116,21 @@
                             <div id="skill-slot">
                                 <img 
                                     id="skill-img"
-                                    src="./Assets/border-decor.png" />
+                                    src="./Assets/images/border-decor.png" />
                             </div>
 
                             <div id="game-options-cont">
                                 <div id="char-stats-cont">
                                     <img 
                                         id="char-stats-img"
-                                        src="./Assets/char_stats_img.png"
+                                        src="./Assets/images/char_stats_img.png"
                                         width="100%"
                                         height="100%" />
                                 </div>
                                 <div id="inventory-cont">
                                     <img 
                                         id="inventory-img"
-                                        src="./Assets/inventory_img.png"
+                                        src="./Assets/images/inventory_img.png"
                                         width="100%"
                                         height="100%" />
                                 </div>

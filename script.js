@@ -1,8 +1,4 @@
 // UI controls
-/* 
-const charStatsCont = document.querySelector('#char-stats-cont');
-const inventoryCont = document.querySelector('#inventory-cont');
-*/
 
 let isPlayerDataWindowShowing = false;
 let isPlayerInvWindowShowing = false;
