@@ -1,3 +1,5 @@
+import { gameControlsDynamicNavCont, gameUIMonsterStats, gameMapLocation, gameUIContent } from "../constants/domElements.js";
+
 const locations = [
     {
         name: "Fortress",
@@ -113,3 +115,6 @@ function goPutridGraveyard() {
 function goDungeon() {
     updatePlayerLocation(locations[7]);
 }
+
+export {locations, updatePlayerLocation, goFortress, goBlacksmith, goGeneralStore, goFortressOutskirts, goSolenciaPlains,
+goQuietForest, goPutridGraveyard, goDungeon};

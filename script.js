@@ -1,3 +1,5 @@
+import { charStatsCont, playerDataWindow, inventoryCont, playerInvWindow } from './constants/domElements.js';
+import { goFortress } from './model/locationsModel.js';
 // UI controls
 
 let isPlayerDataWindowShowing = false;
