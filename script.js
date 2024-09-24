@@ -1,5 +1,4 @@
 import { charStatsCont, playerDataWindow, inventoryCont, playerInvWindow } from './constants/domElements.js';
-import { goFortress } from './model/locationsModel.js';
 import { navigationController } from './controller/navigationController.js';
 // UI controls
 

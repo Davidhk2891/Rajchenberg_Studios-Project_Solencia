@@ -38,11 +38,3 @@ const weapons = [
         damage: 24
     }
 ];
-
-function buyWeapon() {
-
-}
-
-function sellWeapon() {
-    
-}
