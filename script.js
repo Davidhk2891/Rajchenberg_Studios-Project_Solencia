@@ -1,5 +1,6 @@
 import { charStatsCont, playerDataWindow, inventoryCont, playerInvWindow } from './constants/domElements.js';
 import { goFortress } from './model/locationsModel.js';
+import { navigationController } from './controller/navigationController.js';
 // UI controls
 
 let isPlayerDataWindowShowing = false;
@@ -28,7 +29,7 @@ inventoryCont.addEventListener('click', function(){
 
 // Run game
 function runGame() {
-    goFortress();
+    navigationController.goFortress(); // Start the game in the fortress
 }
 
 runGame();

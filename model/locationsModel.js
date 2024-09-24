@@ -1,5 +1,10 @@
 import { gameControlsDynamicNavCont, gameUIMonsterStats, gameMapLocation, gameUIContent } from "../constants/domElements.js";
 
+/* 
+The model stores data about the locations.
+Here's the part of the model that defines the "Blacksmith shop."
+*/ 
+
 const locations = [
     {
         name: "Fortress",
