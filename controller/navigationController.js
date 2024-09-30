@@ -17,6 +17,8 @@ const navigationController = {
         // Get the location data from the model by the locationName
         const location = locations.find(
                 function(location){
+                    isNewLocationShop = location.name == 'Blacksmith shop' ||
+                     location.name == 'General store' ? true : false;
                     return location.name === locationName
                 }
             );
@@ -30,10 +32,8 @@ const navigationController = {
                     // Determine which controller to use
                     if (funcObj.controller === 'navigationController') {
                         controller = this;
-                        isNewLocationShop = false;
                     } else if (funcObj.controller === 'shopController') {
                         controller = shopController;
-                        isNewLocationShop = true;
                     }
 
                     // Check if the function exists in the controller
@@ -53,8 +53,11 @@ const navigationController = {
         gameView.updateButtons(location["button text"], buttonFunctions, this);
 
         // If the new location is a shop, open up the inventory
+        console.log('location should open inventory - ' + isNewLocationShop);
         if (isNewLocationShop) {
-            inventoryView.handleDrawerOpening();
+            inventoryView.handleDrawerOpening(true);
+        } else {
+            inventoryView.handleDrawerOpening(false);
         }
     },
 

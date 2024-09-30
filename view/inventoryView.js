@@ -1,22 +1,41 @@
 import { inventoryCont, playerInvWindow } from '../constants/domElements.js';
 
 // UI controls
-let isPlayerInvWindowShowing = false;
+let isInventoryShowing = false;
+let blockManualInvOpening = false;
 
-const inventoryView = {
-    
-    handleDrawerOpening: function() {
-        inventoryCont.addEventListener('click', function(){
-            if (!isPlayerInvWindowShowing) {
-                playerInvWindow.style.display = "inline";
-                isPlayerInvWindowShowing = true;
-            } else {
-                playerInvWindow.style.display = "none";
-                isPlayerInvWindowShowing = false;
-            }
-        });
+function runInventoryOpeningBehaviorForListener() {
+    if (!isInventoryShowing) {
+        playerInvWindow.style.display = "inline";
+        isInventoryShowing = true;
+    } else {
+        playerInvWindow.style.display = "none";
+        isInventoryShowing = false;
     }
 }
+
+function runInventoryOpeningBehavior(showInventory) {
+    if (showInventory) {
+        playerInvWindow.style.display = "inline";
+        showInventory = false;
+        blockManualInvOpening = true;
+    } else {
+        playerInvWindow.style.display = "none";
+        showInventory = true;
+        blockManualInvOpening = false;
+    }
+}
+
+const inventoryView = {
+    handleDrawerOpening: function(showInventory) {
+        runInventoryOpeningBehavior(showInventory);
+    }
+}
+
+inventoryCont.addEventListener('click', function(){
+    if (!blockManualInvOpening)
+        runInventoryOpeningBehaviorForListener();
+});
 
 export { inventoryView };
 
