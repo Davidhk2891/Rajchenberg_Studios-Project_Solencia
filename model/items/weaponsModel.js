@@ -1,5 +1,3 @@
-let currentWeapon = 0;
-
 const weapons = [
     {
         name: "Small axe",
@@ -38,3 +36,5 @@ const weapons = [
         damage: 24
     }
 ];
+
+export { weapons };

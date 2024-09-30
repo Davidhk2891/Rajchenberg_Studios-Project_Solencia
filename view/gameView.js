@@ -1,4 +1,4 @@
-import {gameMapLocation, gameUIContent, gameControlsDynamicNavCont} from '../constants/domElements.js';
+import { gameMapLocation, gameUIContent, gameControlsDynamicNavCont } from '../constants/domElements.js';
 
 /*
 The view is responsible for updating the UI. 
@@ -6,6 +6,10 @@ It updates the location text and buttons whenever the player moves to a new loca
 */
 
 const gameView = {
+
+    updateText: function(text) {
+        gameUIContent.innerText = text;
+    },
     
     updateLocationText: function(location) {
         

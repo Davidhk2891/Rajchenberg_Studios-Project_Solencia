@@ -4,30 +4,42 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Project Solencia</title>
+
         <link rel="stylesheet" href="./styles.css"/>
         <link rel="shortcut icon" href="#" />
-        <script src="./utils/logger.js" defer></script>
-        <script src="./constants/domElements.js" type="module" defer></script>
-        <script src="./constants/inventory.js" defer></script>
-        <script src="./constants/rates.js" defer></script>
-        <script src="./constants/shop.js" defer></script>
-        <script src="./model/items/consumables.js" defer></script>
-        <script src="./model/items/weapons.js" defer></script>
-        <script src="./model/mobs/mobs.js" defer></script>
-        <script src="./model/locationsModel.js" type="module" defer></script>
-        <script src="./model/player.js" type="module" defer></script>
-        <script src="./controller/statsController.js" defer></script>
-        <script src="./controller/inventoryController.js" defer></script>
-        <script src="./controller/navigationController.js" type="module" defer></script>
-        <script src="./controller/gameController.js" defer></script>
-        <script src="./view/statsView.js" defer></script>
-        <script src="./view/inventoryView.js" defer></script>
-        <script src="./view/gameView.js" type="module" defer></script>
-        <script src="./script.js" type="module" defer></script>
+
+        <!-- to prevent Firefox FOUC, this must be here -->
+        <script>let FF_FOUC_FIX;</script>
+        <!-- Utilities -->
+        <script src="./utils/logger.js" type="module"></script>
+        <!-- Constants -->
+        <script src="./constants/domElements.js" type="module"></script>
+        <script src="./constants/inventory.js" type="module"></script>
+        <script src="./constants/rates.js" typ="module"></script>
+        <script src="./constants/shop.js" type="module"></script>
+        <!-- Models -->
+        <script src="./model/items/consumablesModel.js" type="module"></script>
+        <script src="./model/items/weaponsModel.js" type="module"></script>
+        <script src="./model/mobs/mobs.js" type="module"></script>
+        <script src="./model/locationsModel.js" type="module"></script>
+        <script src="./model/playerModel.js" type="module"></script>
+        <!-- Controllers -->
+        <script src="./controller/statsController.js" type="module"></script>
+        <script src="./controller/shopController.js" type="module"></script>
+        <script src="./controller/inventoryController.js" type="module"></script>
+        <script src="./controller/navigationController.js" type="module"></script>
+        <script src="./controller/gameController.js" type="module"></script>
+        <!-- Views -->
+        <script src="./view/statsView.js" type="module"></script>
+        <script src="./view/inventoryView.js" type="module"></script>
+        <script src="./view/gameView.js" type="module"></script>
+        <script src="./script.js" type="module"></script>
     </head>
 
     <body>
+        <script>0</script>
         <main>
 
             <h1>Project Solencia</h1>
@@ -37,7 +49,7 @@
 
                 <div id="game-ui-header">
                     <div id="player-data-upfront-cont">
-                        <img id="player-data-upfront-char-img" src="./Assets/images/knight_face.png" alt="Player char face" />
+                        <img id="player-data-upfront-char-img" src="./assets/images/knight_face.png" alt="Player char face" />
                         <div id="player-data-upfront">
                             <strong><span id="player-data-upfront-name">Knight</span></strong>
                             <div id="player-data-upfront-lvl-xp">
@@ -101,14 +113,14 @@
                                 <div id="consumable-slot-1">
                                     <img 
                                         id="consumable-slot-1-img" 
-                                        src="./Assets/images/consumable_slot_empty.gif"
+                                        src="./assets/images/consumable_slot_empty.gif"
                                         width="100%"
                                         height="100%"/>
                                 </div>
                                 <div id="consumable-slot-2">
                                     <img 
                                         id="consumable-slot-2-img"
-                                        src="./Assets/images/consumable_slot_empty.gif"
+                                        src="./assets/images/consumable_slot_empty.gif"
                                         width="100%"
                                         height="100%" /> 
                                 </div>
@@ -117,21 +129,21 @@
                             <div id="skill-slot">
                                 <img 
                                     id="skill-img"
-                                    src="./Assets/images/border-decor.png" />
+                                    src="./assets/images/skill_border.png" />
                             </div>
 
                             <div id="game-options-cont">
                                 <div id="char-stats-cont">
                                     <img 
                                         id="char-stats-img"
-                                        src="./Assets/images/char_stats_img.png"
+                                        src="./assets/images/char_stats_img.png"
                                         width="100%"
                                         height="100%" />
                                 </div>
                                 <div id="inventory-cont">
                                     <img 
                                         id="inventory-img"
-                                        src="./Assets/images/inventory_img.png"
+                                        src="./assets/images/inventory_img.png"
                                         width="100%"
                                         height="100%" />
                                 </div>

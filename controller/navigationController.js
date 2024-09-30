@@ -1,10 +1,14 @@
 import { locations } from '../model/locationsModel.js';
+import { inventoryView } from '../view/inventoryView.js';
 import { gameView } from '../view/gameView.js';
+import { shopController } from './shopController.js';
 
 /* 
 The controller handles the logic when the player clicks the "Go to Blacksmith shop" button. 
 It interacts with the model (locations) and updates the view (gameView) accordingly.
 */
+
+let isNewLocationShop = false;
 
 const navigationController = {
 
@@ -19,19 +23,39 @@ const navigationController = {
 
         // Get the location functions from the respective location object
         const buttonFunctions = location["button functions"].map(
-                (functionName) => {
-                    if (typeof this[functionName] === 'function') {
-                        return this[functionName].bind(this);
+                (funcObj) => {
+
+                    let controller = null;
+
+                    // Determine which controller to use
+                    if (funcObj.controller === 'navigationController') {
+                        controller = this;
+                        isNewLocationShop = false;
+                    } else if (funcObj.controller === 'shopController') {
+                        controller = shopController;
+                        isNewLocationShop = true;
+                    }
+
+                    // Check if the function exists in the controller
+                    if (controller && typeof controller[funcObj.function] === 'function') {
+                        console.log(`Function ${funcObj.function} found in ${funcObj.controller}`);
+                        return controller[funcObj.function].bind(controller);
                     } else {
-                        console.log(`function ${functionName} not found in navigationController`);
+                        console.log(`Function ${funcObj.function} not found in ${funcObj.controller}`);
                         return () => {};
                     }
+
                 }
         );
 
         // Update the view with the new location
         gameView.updateLocationText(location);
         gameView.updateButtons(location["button text"], buttonFunctions, this);
+
+        // If the new location is a shop, open up the inventory
+        if (isNewLocationShop) {
+            inventoryView.handleDrawerOpening();
+        }
     },
 
     goFortress() {

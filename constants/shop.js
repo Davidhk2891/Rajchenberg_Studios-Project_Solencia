@@ -1,7 +1,13 @@
-const priceApple = 5;
-const priceLifePotion = 10;
-const priceNewWeapon = 30;
-const priceOldWeapon = 15;
+const PRICE_APPLE = 5;
+const PRICE_LIFE_POTION = 10;
+const PRICE_MANA_POTION = 10;
+const PRICE_SHORT_SWORD = 230;
+const PRICE_HAND_AXE = 610;
+const PRICE_KRIS = 1600;
+const PRICE_MACE = 1900;
 
-const effectApple = 5;
-const effectLifePotion = 10;
+const NOT_ENOUGH_GOLD = "You don't have enough gold mate.";
+const CAT_WEAPON = "weapon";
+const CAT_HP_RECOVERY = "hp_recovery";
+const EQUIPPABLE = "equippable";
+const CONSUMABLE = "consumable";
