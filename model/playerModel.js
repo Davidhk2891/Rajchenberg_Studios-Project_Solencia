@@ -3,11 +3,18 @@ let player = {
     xp : 0,
     life : 100,
     gold : 5000,
-    inventory : [
+    equippedGear : [
         {
             refName: "Small Axe",
             category: "weapon",
-            type: "equippable",
+            type: "equippable"
+        }
+    ],
+    inventory : [
+        {
+            refName: "Apple",
+            category: "health",
+            type: "consumable"
         }
     ],
     states : [

@@ -113,7 +113,7 @@ h1, main > p:first-of-type {
     height: 30vh;
 }
 
-#player-data-panel, #player-inventory{
+#player-data-panel, #player-inventory {
     width: 350px;
     max-width: 350px;
     height: 100%;
@@ -122,6 +122,18 @@ h1, main > p:first-of-type {
     color: var(--ps-color-white);
     font-size: 0.65rem;
     text-align: center;
+}
+
+#player-inventory-content-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#player-inventory-title {
+    border-bottom: 1px solid var(--ps-color-white);
+    padding-bottom: 3px;
 }
 
 #game-ui-content {

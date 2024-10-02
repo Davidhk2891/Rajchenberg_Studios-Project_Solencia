@@ -21,6 +21,10 @@ export const mpMeter = document.getElementById('mp-meter');
 export const playerDataWindow = document.querySelector('#player-data-panel');
 export const playerInvWindow = document.querySelector('#player-inventory');
 
+    // Inventory windo
+export const playerEquippedGearCont = document.querySelector('#player-equipped-gear-cont');
+export const playerInventoryCont = document.querySelector('#player-inventory-cont');
+
     // Dynamic controls
 export const gameControlsDynamicNavCont = document.querySelector('#game-controls-dynamic-nav-cont');
 

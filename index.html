@@ -17,7 +17,7 @@
         <!-- Constants -->
         <script src="./constants/domElements.js" type="module"></script>
         <script src="./constants/inventory.js" type="module"></script>
-        <script src="./constants/rates.js" typ="module"></script>
+        <script src="./constants/rates.js" type="module"></script>
         <script src="./constants/shop.js" type="module"></script>
         <!-- Models -->
         <script src="./model/items/consumablesModel.js" type="module"></script>
@@ -80,9 +80,11 @@
                     </div>
     
                     <div id="player-inventory" class="side-panels">
-                        <p>Inventory</p>
-                        <div id="player-equipped-gear-cont"></div>
-                        <div id="player-inventory-cont"></div>
+                        <div id="player-inventory-content-cont">
+                            <p id="player-inventory-title">Inventory</p>
+                            <div id="player-equipped-gear-cont"></div>
+                            <div id="player-inventory-cont"></div>
+                        </div>
                     </div>
                 </div>
 

@@ -38,10 +38,10 @@ const navigationController = {
 
                     // Check if the function exists in the controller
                     if (controller && typeof controller[funcObj.function] === 'function') {
-                        console.log(`Function ${funcObj.function} found in ${funcObj.controller}`);
+                        // console.log(`Function ${funcObj.function} found in ${funcObj.controller}`);
                         return controller[funcObj.function].bind(controller);
                     } else {
-                        console.log(`Function ${funcObj.function} not found in ${funcObj.controller}`);
+                        // console.log(`Function ${funcObj.function} not found in ${funcObj.controller}`);
                         return () => {};
                     }
 
@@ -53,7 +53,7 @@ const navigationController = {
         gameView.updateButtons(location["button text"], buttonFunctions, this);
 
         // If the new location is a shop, open up the inventory
-        console.log('location should open inventory - ' + isNewLocationShop);
+        // console.log('location should open inventory - ' + isNewLocationShop);
         if (isNewLocationShop) {
             inventoryView.handleDrawerOpening(true);
         } else {
