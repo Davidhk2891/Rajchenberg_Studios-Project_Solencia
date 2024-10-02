@@ -65,8 +65,8 @@ const locations = [
         "button functions": [
             {controller: "fightController", function: "fightEliteBrute"},
             {controller: "fightController", function: "fightEliteBrute"},
-            {controller: "fightController", function: "goSolenciaPlains"},
-            {controller: "fightController", function: "goPutridGraveyard"}
+            {controller: "navigationController", function: "goSolenciaPlains"},
+            {controller: "navigationController", function: "goPutridGraveyard"}
         ],
         text: "You reach the infamous Quiet Forest. As rumored, it is indeed dead quiet. The only noises you can identify are those of the horrid creatures lurking between the tall trees. You see them from afar. A shivering feeling rushes down your spine. You feel cold. You carry on."
     },
