@@ -2,6 +2,8 @@ let player = {
     level : 0,
     xp : 0,
     life : 100,
+    defense : 0,
+    strength : 10,
     gold : 5000,
     equippedGear : [
         {

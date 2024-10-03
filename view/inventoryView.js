@@ -27,45 +27,28 @@ function runInventoryOpeningBehavior(showInventory) {
 }
 
 const inventoryView = {
-
+    
     updateEquippedGearView: function(equippedGear) {
-        /*
-        <div id="player-inventory" class="side-panels">
-            <div id="player-inventory-content-cont">
-                <p id="player-inventory-title">Inventory</p>
-                <div id="player-equipped-gear-cont"></div>
-                <div id="player-inventory-cont"></div>
-            </div>
-        </div>
-        */
 
-        /*
-
-        */
-
-        // Algorithm:
-        /* 
-        1. Get the inventory array from the inventory parameter
-        2. Iterate over it
-        3. Generate a p element which contains n item in the inventory to which you get the name
-        */
         playerEquippedGearCont.innerHTML = "";
         equippedGear.forEach(function(gearPiece) {
             const p = document.createElement('gear-item');
-
-            /* 
-            equippedGear : [
-                {
-                    refName: "Small Axe",
-                    category: "weapon",
-                    type: "equippable"
-                }
-            ],
-            */
-
             if (gearPiece.category = "weapon") {
                 p.innerText = `- Weapon: ${gearPiece.refName}`;
+            } else if (gearPiece.category = "armor") {
+                p.innerText = `- Armor: ${gearPiece.refName}`;
             }
+            playerEquippedGearCont.appendChild(p);
+        });
+    },
+
+    updateInventoryView: function(inventory) {
+
+        playerInventoryCont.innerHTML = "";
+        inventory.forEach(function(invPiece) {
+            const p = document.createElement('inventory-item');
+            p.innerText = `- ${invPiece.refName}`;
+            playerInventoryCont.appendChild(p);
         });
     },
 

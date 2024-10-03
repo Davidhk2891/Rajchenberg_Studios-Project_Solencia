@@ -19,7 +19,7 @@ import { weapons } from '../model/items/weaponsModel.js';
 import { consumables } from '../model/items/consumablesModel.js';
 import { player } from '../model/playerModel.js';
 import { inventoryView } from '../view/inventoryView.js';
-import { gameView } from '../view/gameView.js';
+import { navigationView } from '../view/navigationView.js';
 
 let newInventoryItem;
 let isAffordable = false;
@@ -98,10 +98,10 @@ const shopController = {
 function updateViewOnPurchaseAttempt() {
     if (isAffordable) {
         let newItem = player.inventory[player.inventory.length - 1].refName;
-        gameView.updateText(`You bought a brand new ${newItem}`);
+        navigationView.updateText(`You bought a brand new ${newItem}`);
         isAffordable = false;
     } else {
-        gameView.updateText(NOT_ENOUGH_GOLD);
+        navigationView.updateText(NOT_ENOUGH_GOLD);
     }
 }
 

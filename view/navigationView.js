@@ -5,7 +5,7 @@ The view is responsible for updating the UI.
 It updates the location text and buttons whenever the player moves to a new location.
 */
 
-const gameView = {
+const navigationView = {
 
     updateText: function(text) {
         gameUIContent.innerText = text;
@@ -29,4 +29,4 @@ const gameView = {
     }
 }
 
-export { gameView };
+export { navigationView };

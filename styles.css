@@ -131,7 +131,17 @@ h1, main > p:first-of-type {
     align-items: center;
 }
 
-#player-inventory-title {
+#player-equipped-gear-cont, #player-inventory-cont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    text-align: start;
+    margin-left: 20px;
+} 
+
+#player-inventory-title, #player-equipped-gear-title {
     border-bottom: 1px solid var(--ps-color-white);
     padding-bottom: 3px;
 }

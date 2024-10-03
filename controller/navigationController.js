@@ -1,11 +1,11 @@
 import { locations } from '../model/locationsModel.js';
 import { inventoryView } from '../view/inventoryView.js';
-import { gameView } from '../view/gameView.js';
+import { navigationView } from '../view/navigationView.js';
 import { shopController } from './shopController.js';
 
 /* 
 The controller handles the logic when the player clicks the "Go to Blacksmith shop" button. 
-It interacts with the model (locations) and updates the view (gameView) accordingly.
+It interacts with the model (locations) and updates the view (navigationView) accordingly.
 */
 
 let isNewLocationShop = false;
@@ -49,8 +49,8 @@ const navigationController = {
         );
 
         // Update the view with the new location
-        gameView.updateLocationText(location);
-        gameView.updateButtons(location["button text"], buttonFunctions, this);
+        navigationView.updateLocationText(location);
+        navigationView.updateButtons(location["button text"], buttonFunctions, this);
 
         // If the new location is a shop, open up the inventory
         // console.log('location should open inventory - ' + isNewLocationShop);
