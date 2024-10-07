@@ -125,10 +125,12 @@ h1, main > p:first-of-type {
 }
 
 #player-inventory-content-cont {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #player-equipped-gear-cont, #player-inventory-cont {

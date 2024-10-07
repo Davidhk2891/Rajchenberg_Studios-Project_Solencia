@@ -12,33 +12,32 @@
     3) If they don't have enough gold, push a message telling them so             
 */
 
-import { PRICE_APPLE,PRICE_LIFE_POTION,PRICE_MANA_POTION,PRICE_SHORT_SWORD,PRICE_HAND_AXE
+import { PRICE_APPLE,PRICE_S_LIFE_POTION,PRICE_S_MANA_POTION,PRICE_SHORT_SWORD,PRICE_HAND_AXE
     ,PRICE_KRIS,PRICE_MACE,NOT_ENOUGH_GOLD,CAT_WEAPON,CAT_HP_RECOVERY,EQUIPPABLE,CONSUMABLE }
     from '../constants/shop.js';
+import { INVENTORY_CAPACITY } from '../constants/inventory.js';
+
 import { weapons } from '../model/items/weaponsModel.js';
 import { consumables } from '../model/items/consumablesModel.js';
 import { player } from '../model/playerModel.js';
+
 import { inventoryView } from '../view/inventoryView.js';
 import { navigationView } from '../view/navigationView.js';
 
 let newInventoryItem;
 let isAffordable = false;
+let isInventoryFull = false;
+let inventory = player.inventory;
+let equippedGear = player.equippedGear;
 
 const shopController = {
 
+    // Weapons
     buyShortSword: function() {
 
         // Get weapon ref name from weaponsModel, push it to player inventory
-        if (player.gold >= PRICE_SHORT_SWORD) {
-            player.gold -= PRICE_SHORT_SWORD;
-            newInventoryItem = { refName: weapons[1].name, category: CAT_WEAPON, type: EQUIPPABLE };
-            player.inventory.push(newInventoryItem);
-            newInventoryItem = null;
-            isAffordable = true;
-        } else {
-            isAffordable = false;
-        }
-
+        attemptFetchAddPurchaseItem(weapons[1].name, PRICE_SHORT_SWORD, CAT_WEAPON, EQUIPPABLE);
+    
         // Update view on whether or not short sword was purchased
         updateViewOnPurchaseAttempt();
     },
@@ -46,15 +45,7 @@ const shopController = {
     buyHandAxe: function() {
 
         // Get weapon ref name from weaponsModel, push it to player inventory
-        if (player.gold >= PRICE_HAND_AXE) {
-            player.gold -= PRICE_HAND_AXE;
-            newInventoryItem = {refName: weapons[2].name, category: CAT_WEAPON, type: EQUIPPABLE};
-            player.inventory.push(newInventoryItem);
-            newInventoryItem = null;
-            isAffordable = true;
-        } else {
-            isAffordable = false;
-        }
+        attemptFetchAddPurchaseItem(weapons[2].name, PRICE_HAND_AXE, CAT_WEAPON, EQUIPPABLE);
 
         // Update view on whether or not hand axe was purchased
         updateViewOnPurchaseAttempt();
@@ -63,15 +54,7 @@ const shopController = {
     buyKris: function() {
 
         // Get weapon ref name from weaponsModel, push it to player inventory
-        if (player.gold >= PRICE_KRIS) {
-            player.gold -= PRICE_KRIS;
-            newInventoryItem = {refName: weapons[3].name, category: CAT_WEAPON, type: EQUIPPABLE};
-            player.inventory.push(newInventoryItem);
-            newInventoryItem = null;
-            isAffordable = true;
-        } else {
-            isAffordable = false;
-        }
+        attemptFetchAddPurchaseItem(weapons[3].name, PRICE_KRIS, CAT_WEAPON, EQUIPPABLE);
 
         // Update view on whether or not kris was purchased
         updateViewOnPurchaseAttempt();
@@ -80,26 +63,62 @@ const shopController = {
     buyMace: function() {
 
         // Get weapon ref name from weaponsModel, push it to player inventory
-        if(player.gold >= PRICE_MACE) {
-            player.gold -= PRICE_MACE;
-            newInventoryItem = {refName: weapons[4].name, category: CAT_WEAPON, type: EQUIPPABLE};
-            player.inventory.push(newInventoryItem);
-            newInventoryItem = null;
-            isAffordable = true;
-        } else {
-            isAffordable = false;
-        }
+        attemptFetchAddPurchaseItem(weapons[4].name, PRICE_MACE, CAT_WEAPON, EQUIPPABLE);
 
         // Update view on whether or not mace is affordable
+        updateViewOnPurchaseAttempt();
+    },
+
+    // Consumables
+    buyApple: function() {
+
+        // Get consumable ref name from consumablesModel, push it to player inventory
+        attemptFetchAddPurchaseItem(consumables[0].name, PRICE_APPLE, CAT_HP_RECOVERY, CONSUMABLE);
+
+        // Update view on whether or not apple is affordable
+        updateViewOnPurchaseAttempt();
+    },
+
+    buySmallHealthPotion: function() {
+
+        // Get consumable ref name from consumablesModel, push it to player inventory
+        attemptFetchAddPurchaseItem(consumables[1].name, PRICE_S_LIFE_POTION, CAT_HP_RECOVERY, CONSUMABLE);
+
+        // Update view on whether or not small health potion is affordable
         updateViewOnPurchaseAttempt();
     }
 }
 
+function attemptFetchAddPurchaseItem(itemToPurchase, itemPrice, itemCategory, itemType) {
+    if (player.gold >= itemPrice) {
+        if (inventory.length === INVENTORY_CAPACITY) {
+            isInventoryFull = true;
+        } else {
+            player.gold -= itemPrice;
+            newInventoryItem = {
+                refName: itemToPurchase,
+                category: itemCategory,
+                type: itemType
+            };
+            inventory.push(newInventoryItem);
+            newInventoryItem = null;
+            isAffordable = true;
+        }
+    } else {
+        isAffordable = false;
+    }
+}
+
 function updateViewOnPurchaseAttempt() {
+    if (isInventoryFull) {
+        navigationView.updateText("Sorry pal... you don't have more room in your inventory");
+        return;
+    }
     if (isAffordable) {
         let newItem = player.inventory[player.inventory.length - 1].refName;
         navigationView.updateText(`You bought a brand new ${newItem}`);
         isAffordable = false;
+        inventoryView.updateInventoryAndEquippedGearView(equippedGear, inventory);
     } else {
         navigationView.updateText(NOT_ENOUGH_GOLD);
     }

@@ -28,7 +28,7 @@ const locations = [
     },
     {
         name: "General store",
-        "button text": ["Buy apple (5 gold)", "Buy life potion (10 gold)", "Back to Fortress"],
+        "button text": ["Buy apple (5 gold)", "Buy health potion (10 gold)", "Back to Fortress"],
         "button functions": [
             {controller: "shopController", function: "buyApple"},
             {controller: "shopController", function: "buySmallHealthPotion"},

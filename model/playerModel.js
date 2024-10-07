@@ -5,17 +5,22 @@ let player = {
     defense : 0,
     strength : 10,
     gold : 5000,
-    equippedGear : [
-        {
+    equippedGear : {
+        weapon: {
             refName: "Small Axe",
             category: "weapon",
             type: "equippable"
+        },
+        armor: {
+            refName: null,
+            category: null,
+            type: null
         }
-    ],
+    },
     inventory : [
         {
             refName: "Apple",
-            category: "health",
+            category: "hp_recovery",
             type: "consumable"
         }
     ],

@@ -3,6 +3,107 @@ import { inventoryCont, playerInvWindow, playerEquippedGearCont, playerInventory
 // UI controls
 let isInventoryShowing = false;
 let blockManualInvOpening = false;
+let currWeaponPrefix = "- Weapon:";
+let currArmorPrefix = "- Armor:";
+let itemPrefix = "-";
+
+const inventoryView = {
+    
+    updateInventoryAndEquippedGearView: function(equippedGear, inventory) {
+
+        const pWeapon = document.createElement('eg-weapon');
+        const pArmor = document.createElement('eg-armor');
+        playerEquippedGearCont.innerHTML = "";
+
+        // Weapon
+        if (equippedGear.weapon.refName != null) {
+            pWeapon.innerText = `${currWeaponPrefix} ${equippedGear.weapon.refName}`;
+            playerEquippedGearCont.appendChild(pWeapon);
+            pWeapon.style.marginTop = "4px";
+        }
+
+        // Armor
+        if (equippedGear.armor.refName != null) {
+            pArmor.innerText = `${currArmorPrefix} ${equippedGear.armor.refName}`;
+            playerEquippedGearCont.appendChild(pArmor);
+            pArmor.style.marginTop = "4px";
+        }
+
+        // Inventory
+        playerInventoryCont.innerHTML = "";
+        inventory.forEach(function(invPiece, i, inv) {
+            renderList(invPiece, inv, i, equippedGear, pWeapon, pArmor);
+        });
+    },
+
+    handleDrawerOpening: function(showInventory) {
+        runInventoryOpeningBehavior(showInventory);
+    }
+}
+
+function addSelectedGearToEG(inventory, invIndex, equippedGear, pWeapon, pArmor) {
+
+    // 1. If equippedGear.weapon has weapon, store in temp var
+    let tempWeaponRefName, tempWeaponCategory, tempWeaponType;
+    if (equippedGear.weapon.refName != null) {
+
+        tempWeaponRefName = equippedGear.weapon.refName;
+        tempWeaponCategory = equippedGear.weapon.category;
+        tempWeaponType = equippedGear.weapon.type;
+    }
+
+    // 2. Replace current equippedGear.weapon with inventory[invIndex]
+
+    // ERROR: Can't replace an item in the middle.
+    // The item that gets replaced is the first one in the array.
+    // Seems like the index is fucked up.
+    // Log the index
+    // BUG FOUND: invIndex is stuck
+
+    console.log(`Inventory index in inventory array is ${invIndex}`);
+    console.log(`SWAPPING ${equippedGear.weapon.refName} WITH ${inventory[invIndex].refName}`);
+    if (inventory[invIndex].category == "weapon") {
+        equippedGear.weapon.refName = inventory[invIndex].refName;
+        equippedGear.weapon.category = inventory[invIndex].category;
+        equippedGear.weapon.type = inventory[invIndex].type;
+    } else if (inventory[invIndex].category == "armor") {
+        equippedGear.armor.refName = inventory[invIndex].refName;
+        equippedGear.armor.category = inventory[invIndex].category;
+        equippedGear.armor.type = inventory[invIndex].type;
+    }
+
+    // 3. remove inventory[invIndex]
+    inventory.splice(invIndex, 1);
+
+    // 4. Store (push) temp var into inventory
+    let newInvItem = {
+        refName: tempWeaponRefName,
+        category: tempWeaponCategory,
+        type: tempWeaponType
+    }
+    inventory.push(newInvItem);
+
+    // 5. Update UI elements in inventory
+    pWeapon.innerText = `${currWeaponPrefix} ${equippedGear.weapon.refName}`;
+    pArmor.innerText = `${currArmorPrefix} ${equippedGear.armor.refName}`;
+    playerInventoryCont.innerHTML = "";
+    inventory.forEach(function(invPiece) {
+        renderList(invPiece, inventory, invIndex, equippedGear, pWeapon, pArmor);
+    });
+}
+
+function renderList(invPiece, inventory, invIndex, equippedGear, pWeapon, pArmor) {
+    // There is recursion in here
+    const pInv = document.createElement('inventory-item');
+        pInv.style.cursor = "pointer";
+        pInv.innerText = `${itemPrefix} ${invPiece.refName}`;
+        playerInventoryCont.appendChild(pInv);
+        pInv.style.marginTop = "4px";
+        pInv.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            addSelectedGearToEG(inventory, invIndex, equippedGear, pWeapon, pArmor);
+        });
+}
 
 function runInventoryOpeningBehaviorForListener() {
     if (!isInventoryShowing) {
@@ -23,37 +124,6 @@ function runInventoryOpeningBehavior(showInventory) {
         playerInvWindow.style.display = "none";
         showInventory = true;
         blockManualInvOpening = false;
-    }
-}
-
-const inventoryView = {
-    
-    updateEquippedGearView: function(equippedGear) {
-
-        playerEquippedGearCont.innerHTML = "";
-        equippedGear.forEach(function(gearPiece) {
-            const p = document.createElement('gear-item');
-            if (gearPiece.category = "weapon") {
-                p.innerText = `- Weapon: ${gearPiece.refName}`;
-            } else if (gearPiece.category = "armor") {
-                p.innerText = `- Armor: ${gearPiece.refName}`;
-            }
-            playerEquippedGearCont.appendChild(p);
-        });
-    },
-
-    updateInventoryView: function(inventory) {
-
-        playerInventoryCont.innerHTML = "";
-        inventory.forEach(function(invPiece) {
-            const p = document.createElement('inventory-item');
-            p.innerText = `- ${invPiece.refName}`;
-            playerInventoryCont.appendChild(p);
-        });
-    },
-
-    handleDrawerOpening: function(showInventory) {
-        runInventoryOpeningBehavior(showInventory);
     }
 }
 

@@ -22,6 +22,7 @@ const navigationView = {
         gameControlsDynamicNavCont.innerHTML = ''; // Clear previous buttons
         buttonText.forEach(function(text, index) {
             const button = document.createElement('button');
+            button.style.cursor = "pointer";
             button.innerText = text;
             button.addEventListener('click', buttonFunctions[index]); // Attach the button function
             gameControlsDynamicNavCont.appendChild(button); // Add button to the UI

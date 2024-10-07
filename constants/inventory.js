@@ -1,1 +1,3 @@
-let newInventoryItem = null;
+const INVENTORY_CAPACITY = 10;
+
+export { INVENTORY_CAPACITY };

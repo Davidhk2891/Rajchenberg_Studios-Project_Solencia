@@ -1,19 +1,19 @@
 const consumables = [
     {
         name: "Apple",
-        type: "health",
+        category: "hp_recovery",
         cost: 5,
         effect: 5
     },
     {
         name: "Small health potion",
-        type: "health",
+        category: "hp_recovery",
         cost: 10,
         effect: 10
     },
     {
         name: "Small mana potion",
-        type: "mana",
+        category: "hp_recovery",
         cost: 10,
         effect: 10
     }
