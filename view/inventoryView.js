@@ -32,13 +32,28 @@ const inventoryView = {
         // Inventory
         playerInventoryCont.innerHTML = "";
         inventory.forEach(function(invPiece, i, inv) {
-            renderList(invPiece, inv, i, equippedGear, pWeapon, pArmor);
+            renderList(invPiece, i, inv, equippedGear, pWeapon, pArmor);
         });
     },
 
     handleDrawerOpening: function(showInventory) {
         runInventoryOpeningBehavior(showInventory);
     }
+}
+
+function renderList(invPiece, invIndex, inventory, equippedGear, pWeapon, pArmor) {
+    // There is recursion in here
+    const pInv = document.createElement('inventory-item');
+    pInv.style.cursor = "pointer";
+    pInv.innerText = `${itemPrefix} ${invPiece.refName}`;
+    playerInventoryCont.appendChild(pInv);
+    pInv.style.marginTop = "4px";
+    
+    pInv.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+        console.log(`Index from item pressed: ${invIndex}`);
+        addSelectedGearToEG(inventory, invIndex, equippedGear, pWeapon, pArmor);
+    });
 }
 
 function addSelectedGearToEG(inventory, invIndex, equippedGear, pWeapon, pArmor) {
@@ -88,21 +103,8 @@ function addSelectedGearToEG(inventory, invIndex, equippedGear, pWeapon, pArmor)
     pArmor.innerText = `${currArmorPrefix} ${equippedGear.armor.refName}`;
     playerInventoryCont.innerHTML = "";
     inventory.forEach(function(invPiece) {
-        renderList(invPiece, inventory, invIndex, equippedGear, pWeapon, pArmor);
+        renderList(invPiece, invIndex, inventory, equippedGear, pWeapon, pArmor);
     });
-}
-
-function renderList(invPiece, inventory, invIndex, equippedGear, pWeapon, pArmor) {
-    // There is recursion in here
-    const pInv = document.createElement('inventory-item');
-        pInv.style.cursor = "pointer";
-        pInv.innerText = `${itemPrefix} ${invPiece.refName}`;
-        playerInventoryCont.appendChild(pInv);
-        pInv.style.marginTop = "4px";
-        pInv.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
-            addSelectedGearToEG(inventory, invIndex, equippedGear, pWeapon, pArmor);
-        });
 }
 
 function runInventoryOpeningBehaviorForListener() {
