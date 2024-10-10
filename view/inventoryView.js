@@ -48,7 +48,7 @@ function renderList(invPiece, invIndex, inventory, equippedGear, pWeapon, pArmor
     pInv.innerText = `${itemPrefix} ${invPiece.refName}`;
     playerInventoryCont.appendChild(pInv);
     pInv.style.marginTop = "4px";
-    
+
     pInv.addEventListener('contextmenu', function(event) {
         event.preventDefault();
         console.log(`Index from item pressed: ${invIndex}`);
@@ -101,9 +101,11 @@ function addSelectedGearToEG(inventory, invIndex, equippedGear, pWeapon, pArmor)
     // 5. Update UI elements in inventory
     pWeapon.innerText = `${currWeaponPrefix} ${equippedGear.weapon.refName}`;
     pArmor.innerText = `${currArmorPrefix} ${equippedGear.armor.refName}`;
+
     playerInventoryCont.innerHTML = "";
-    inventory.forEach(function(invPiece) {
-        renderList(invPiece, invIndex, inventory, equippedGear, pWeapon, pArmor);
+    inventory.forEach(function(invPiece, index) {
+        renderList(invPiece, index, inventory, equippedGear, pWeapon, pArmor);
+        // Fixed! Read GPT response to understand
     });
 }
 
