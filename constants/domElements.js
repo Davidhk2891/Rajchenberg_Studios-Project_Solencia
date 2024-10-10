@@ -20,6 +20,8 @@ export const mpMeter = document.getElementById('mp-meter');
     // Player data and inventory windows
 export const playerDataWindow = document.querySelector('#player-data-panel');
 export const playerInvWindow = document.querySelector('#player-inventory');
+export const pWeapon = document.createElement('eg-weapon');
+export const pArmor = document.createElement('eg-armor');
 
     // Inventory windo
 export const playerEquippedGearCont = document.querySelector('#player-equipped-gear-cont');

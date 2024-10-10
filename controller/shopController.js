@@ -13,8 +13,8 @@
 */
 
 import { PRICE_APPLE,PRICE_S_LIFE_POTION,PRICE_S_MANA_POTION,PRICE_SHORT_SWORD,PRICE_HAND_AXE
-    ,PRICE_KRIS,PRICE_MACE,NOT_ENOUGH_GOLD,CAT_WEAPON,CAT_HP_RECOVERY,EQUIPPABLE,CONSUMABLE }
-    from '../constants/shop.js';
+    ,PRICE_KRIS,PRICE_MACE,NOT_ENOUGH_GOLD }from '../constants/shop.js';
+import { CAT_WEAPON, CAT_HP_RECOVERY, EQUIPPABLE, CONSUMABLE } from '../constants/inventory.js';    
 import { INVENTORY_CAPACITY } from '../constants/inventory.js';
 
 import { weapons } from '../model/items/weaponsModel.js';
