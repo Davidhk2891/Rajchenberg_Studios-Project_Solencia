@@ -23,7 +23,7 @@ export const playerInvWindow = document.querySelector('#player-inventory');
 export const pWeapon = document.createElement('eg-weapon');
 export const pArmor = document.createElement('eg-armor');
 
-    // Inventory windo
+    // Inventory window
 export const playerEquippedGearCont = document.querySelector('#player-equipped-gear-cont');
 export const playerInventoryCont = document.querySelector('#player-inventory-cont');
 

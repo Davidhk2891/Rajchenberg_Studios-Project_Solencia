@@ -1,5 +1,6 @@
 import { player } from "../model/playerModel.js";
 import { inventoryView } from "../view/inventoryView.js";
+import { consumables } from "../model/items/consumablesModel.js";
 
 const inventoryController = {
 
@@ -9,9 +10,14 @@ const inventoryController = {
         let equippedGearObj = player.equippedGear;
         // Get the player inventory array from the player object in playerModel
         let inventoryArr = player.inventory;
+        // Get the player consumable slots array from the player object in playerModel
+        let consumableSlotsArr = player.consumableSlots;
+        // Get the list of consumables for consumable operations
+        let allConsumablesArr = consumables;
 
         // Show player equipped gear and inventory in the inventory window
-        inventoryView.updateInventoryAndEquippedGearView(equippedGearObj, inventoryArr);
+        inventoryView.updateInventoryAndEquippedGearView(equippedGearObj, inventoryArr,
+             consumableSlotsArr, allConsumablesArr);
     }
 }
 

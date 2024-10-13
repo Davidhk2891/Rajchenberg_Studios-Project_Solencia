@@ -12,11 +12,6 @@
     3) If they don't have enough gold, push a message telling them so             
 */
 
-import { PRICE_APPLE,PRICE_S_LIFE_POTION,PRICE_S_MANA_POTION,PRICE_SHORT_SWORD,PRICE_HAND_AXE
-    ,PRICE_KRIS,PRICE_MACE,NOT_ENOUGH_GOLD }from '../constants/shop.js';
-import { CAT_WEAPON, CAT_HP_RECOVERY, EQUIPPABLE, CONSUMABLE } from '../constants/inventory.js';    
-import { INVENTORY_CAPACITY } from '../constants/inventory.js';
-
 import { weapons } from '../model/items/weaponsModel.js';
 import { consumables } from '../model/items/consumablesModel.js';
 import { player } from '../model/playerModel.js';

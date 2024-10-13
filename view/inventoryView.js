@@ -1,6 +1,5 @@
 import { inventoryCont, playerInvWindow, playerEquippedGearCont, playerInventoryCont,
-     pWeapon, pArmor, gameUIContent } from '../constants/domElements.js';
-import { CAT_WEAPON, CAT_HP_RECOVERY, EQUIPPABLE, CONSUMABLE } from '../constants/inventory.js';
+     pWeapon, pArmor, gameUIContent, consumableSlot1, consumableSlot2 } from '../constants/domElements.js';
 
 // UI controls
 let isInventoryShowing = false;
@@ -11,7 +10,7 @@ let itemPrefix = "-";
 
 const inventoryView = {
     
-    updateInventoryAndEquippedGearView: function(equippedGear, inventory) {
+    updateInventoryAndEquippedGearView: function(equippedGear, inventory, consumableSlots, consumablesList) {
 
         playerEquippedGearCont.innerHTML = "";
 
@@ -32,7 +31,7 @@ const inventoryView = {
         // Inventory
         playerInventoryCont.innerHTML = "";
         inventory.forEach(function(invPiece, i, inv) {
-            renderList(invPiece, i, inv, equippedGear, pWeapon, pArmor);
+            renderList(invPiece, i, inv, equippedGear, pWeapon, pArmor, consumableSlots, consumablesList);
         });
     },
 
@@ -41,7 +40,7 @@ const inventoryView = {
     }
 }
 
-function renderList(invPiece, invIndex, inventory, equippedGear, pWeapon, pArmor) {
+function renderList(invPiece, invIndex, inventory, equippedGear, pWeapon, pArmor, consumableSlots, consumablesList) {
     // There is recursion in here
     const pInv = document.createElement('inventory-item');
     pInv.style.cursor = "pointer";
@@ -52,11 +51,17 @@ function renderList(invPiece, invIndex, inventory, equippedGear, pWeapon, pArmor
     pInv.addEventListener('contextmenu', function(event) {
         event.preventDefault();
         console.log(`Index from item pressed: ${invIndex}`);
-        addSelectedGearToEG(inventory, invIndex, equippedGear, pWeapon, pArmor);
+        addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
+            , pArmor, consumableSlots, consumablesList);
+    });
+
+    pInv.addEventListener('click', function() {
+        console.log(`Index from item pressed: ${invIndex}`);
     });
 }
 
-function addSelectedGearToEG(inventory, invIndex, equippedGear, pWeapon, pArmor) {
+function addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
+    , pArmor, consumableSlots, consumablesList) {
 
     // 1. Above all, check if the item is equippable
     if (inventory[invIndex].type = EQUIPPABLE) {
@@ -104,11 +109,38 @@ function addSelectedGearToEG(inventory, invIndex, equippedGear, pWeapon, pArmor)
             renderList(invPiece, index, inventory, equippedGear, pWeapon, pArmor);
         });
     } else if (inventory[invIndex].type = CONSUMABLE) {
-
+        
         /* Here will run the operations for consuming a consumable. Such as left clicking and
            consuming it right away, right clicking and additing to cons slots, and running all
            of the needed operations. 
         */
+        
+        // 2.1 Compare the inventory[invIndex].type against the consumables list and locate match
+        consumablesList.forEach(function(consumable, index) {
+
+            // Since all we want is to add it to the slots, avoid all the consuming logic here
+            // You want to add the right-clicked consumable into the correct consumableSlots object
+            if (inventory[invIndex].refName === consumable.name) {
+                if (consumableSlots.slotOne.amount < 10) {
+                    
+                    // Slot one has vacancy
+                    consumableSlots.slotOne.refName = consumable.name;
+                    consumableSlots.slotOne.category = consumable.category;
+                    consumableSlots.slotOne.effect = consumable.effect;
+
+                    // Amount in slot
+                    let slotOneAmount;
+                    if (consumableSlots.slotOne.amount == 0)
+                        slotOneAmount = 0;
+                    else
+                        slotOneAmount = consumableSlots.slotOne.amount;
+                    
+                    // Perform adding operation
+                    
+                }
+            }
+        }); 
+
     }
 }
 

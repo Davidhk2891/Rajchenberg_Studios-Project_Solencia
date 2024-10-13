@@ -5,6 +5,20 @@ let player = {
     defense : 0,
     strength : 10,
     gold : 5000,
+    consumableSlots : {
+        slotOne : {
+            refName: null,
+            category: null,
+            effect: null,
+            amount: 0
+        },
+        slotTwo : {
+            refName: null,
+            category: null,
+            effects: null,
+            amount: 0
+        }
+    },
     equippedGear : {
         weapon: {
             refName: "Small Axe",
