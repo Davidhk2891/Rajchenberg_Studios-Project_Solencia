@@ -138,7 +138,6 @@ h1, main > p:first-of-type {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
     text-align: start;
     margin-left: 20px;
 } 
@@ -254,8 +253,17 @@ h1, main > p:first-of-type {
 }
 
 #consumable-slot-1, #consumable-slot-2 {
+    position: relative;
     width: 40px;
     height: 40px;
+}
+
+.slots-amount {
+    position: absolute;
+    top: 10px;
+    right: 2px;
+    color: var(--ps-color-white);
+    font-weight: 700;
 }
 
 #skill-slot {

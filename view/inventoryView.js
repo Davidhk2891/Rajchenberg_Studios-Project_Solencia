@@ -1,5 +1,6 @@
 import { inventoryCont, playerInvWindow, playerEquippedGearCont, playerInventoryCont,
-     pWeapon, pArmor, gameUIContent, consumableSlot1, consumableSlot2 } from '../constants/domElements.js';
+    pWeapon, pArmor, gameUIContent, consumableSlot1, consumableSlot2,
+    consumableSlot1Amount, consumableSlot2Amount} from '../constants/domElements.js';
 
 // UI controls
 let isInventoryShowing = false;
@@ -7,6 +8,8 @@ let blockManualInvOpening = false;
 let currWeaponPrefix = "- Weapon:";
 let currArmorPrefix = "- Armor:";
 let itemPrefix = "-";
+let slotOneAmount;
+let slotTwoAmount;
 
 const inventoryView = {
     
@@ -122,21 +125,35 @@ function addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
             // You want to add the right-clicked consumable into the correct consumableSlots object
             if (inventory[invIndex].refName === consumable.name) {
                 if (consumableSlots.slotOne.amount < 10) {
+
+                    // Get the current amount
+                    slotOneAmount = consumableSlots.slotOne.amount;
                     
                     // Slot one has vacancy
                     consumableSlots.slotOne.refName = consumable.name;
                     consumableSlots.slotOne.category = consumable.category;
                     consumableSlots.slotOne.effect = consumable.effect;
 
-                    // Amount in slot
-                    let slotOneAmount;
-                    if (consumableSlots.slotOne.amount == 0)
-                        slotOneAmount = 0;
-                    else
-                        slotOneAmount = consumableSlots.slotOne.amount;
+                    // Increase slotOne amount
+                    slotOneAmount++;
+                    consumableSlots.slotOne.amount = slotOneAmount;
+                    consumableSlot1Amount.innerText = consumableSlots.slotOne.amount;
+
+                } else if(consumableSlots.slotTwo.amount < 10) {
+
+                    // Consumable slot 1 full. Start filling up the second one
+
+                    // Get the current amount
+                    slotOneAmount = consumableSlots.slotTwo.amount;
+
+                    // Slot one has vacancy
+                    consumableSlots.slotTwo.refName = consumable.name;
+                    consumableSlots.slotTwo.category = consumable.category;
+                    consumableSlots.slotTwo.effect = consumable.effect;
+
+                    // Increase slotTwo amount
                     
-                    // Perform adding operation
-                    
+
                 }
             }
         }); 
