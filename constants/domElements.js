@@ -33,6 +33,8 @@ export const gameControlsDynamicNavCont = document.querySelector('#game-controls
     // Consumable slots
 export const consumableSlot1 = document.querySelector('#consumable-slot-1');
 export const consumableSlot2 = document.querySelector('#consumable-slot-2');
+export const consumableSlot1Img = document.querySelector('#consumable-slot-1-img');
+export const consumableSlot2Img = document.querySelector('#consumable-slot-2-img');
 export const consumableSlot1Amount = document.querySelector('#consumable-slot-1-amount');
 export const consumableSlot2Amount = document.querySelector('#consumable-slot-2-amount');
 

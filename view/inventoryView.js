@@ -1,6 +1,18 @@
+/* 
+TODO
+1) Multiple identical items not being added//FIXED
+2) Buying from the store and adding to slot fails for same reason. consList undefined//FIXED
+3) Add check: If consumable to add does not match the one in slot destination, add to next slot.
+If next slot also does not match, don't add
+4) Add a third slot
+5) Add letters to bottom left side of each slot with letters Q,W,E which are the keys for using the slots
+6) Left clicking in the slot also consumes it
+7) Right clicking in the slot brings item back to inventory
+*/
+
 import { inventoryCont, playerInvWindow, playerEquippedGearCont, playerInventoryCont,
     pWeapon, pArmor, gameUIContent, consumableSlot1, consumableSlot2,
-    consumableSlot1Amount, consumableSlot2Amount} from '../constants/domElements.js';
+    consumableSlot1Amount, consumableSlot2Amount, consumableSlot1Img, consumableSlot2Img} from '../constants/domElements.js';
 
 // UI controls
 let isInventoryShowing = false;
@@ -65,12 +77,6 @@ function renderList(invPiece, invIndex, inventory, equippedGear, pWeapon, pArmor
 function addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
     , pArmor, consumableSlots, consumablesList) {
 
-    // Above all, check if the item is equippable
-    console.log(`the current selected item: 
-    \nName: ${inventory[invIndex].refName}
-    \nCategory: ${inventory[invIndex].category}
-    \nType: ${inventory[invIndex].type}`);
-
     switch (inventory[invIndex].type) {
         case EQUIPPABLE:
             // If equippedGear.weapon has weapon, store in temp var
@@ -83,8 +89,6 @@ function addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
             }
 
             // Replace current equippedGear.weapon with inventory[invIndex] and update UI
-            console.log(`Inventory index in inventory array is ${invIndex}`);
-            console.log(`SWAPPING ${equippedGear.weapon.refName} WITH ${inventory[invIndex].refName}`);
             if (inventory[invIndex].category == "weapon") {
                 equippedGear.weapon.refName = inventory[invIndex].refName;
                 equippedGear.weapon.category = inventory[invIndex].category;
@@ -120,6 +124,8 @@ function addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
         case CONSUMABLE:
             
             // Compare the inventory[invIndex].type against the consumables list and locate match
+            
+            // I start with 4 apples. I add the 1st one, everything works. I add the second one, consumablesList is undefined.
             consumablesList.forEach(function(consumable) {
 
                 // Since all we want is to add it to the slots, avoid all the consuming logic here
@@ -141,10 +147,9 @@ function addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
 
                         // Add slotOne amount to slot 1 UI
                         consumableSlot1Amount.innerText = consumableSlots.slotOne.amount;
-                        console.log("Slot one amount: " + consumableSlots.slotOne.amount);
                         
                         // Add respective consumable asset into slot with the proper dimensions
-                        
+                        addAssetToConsumableSlot(inventory, invIndex, consumableSlot1Img);
 
                     } else if(consumableSlots.slotTwo.amount < 10) {
 
@@ -164,10 +169,9 @@ function addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
 
                         // Add slotTwo amount to slot 2 UI
                         consumableSlot2Amount.innerText = consumableSlots.slotTwo.amount;
-                        console.log("Slot two amount: " + consumableSlots.slotTwo.amount);
 
                         // Add respective consumable asset into slot with the proper dimensions
-
+                        addAssetToConsumableSlot(inventory, invIndex, consumableSlot2Img);
                     }
                 }
             }); 
@@ -175,10 +179,27 @@ function addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
             inventory.splice(invIndex, 1);
             playerInventoryCont.innerHTML = "";
             inventory.forEach(function(invPiece, index) {
-                renderList(invPiece, index, inventory, equippedGear, pWeapon, pArmor);
+                renderList(invPiece, index, inventory, equippedGear, pWeapon, pArmor, consumableSlots, consumablesList);
             });
             break;
     }
+}
+
+function addAssetToConsumableSlot(inventory, invIndex, consumableSlotImg) {
+
+   let consumableAssetPath = "";
+    switch (inventory[invIndex].refName) {
+        case "Apple":
+            consumableAssetPath = "./assets/images/consumable_apple.png";
+            break;
+        case "Small health potion":
+            consumableAssetPath = "./assets/images/consumable_s_health_pot.png";
+            break;
+        case "Small mana potion":
+            consumableAssetPath = "";
+            break;
+    }
+    consumableSlotImg.src = consumableAssetPath;
 }
 
 function runInventoryOpeningBehaviorForListener() {

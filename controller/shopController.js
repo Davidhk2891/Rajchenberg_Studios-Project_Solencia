@@ -24,6 +24,8 @@ let isAffordable = false;
 let isInventoryFull = false;
 let inventory = player.inventory;
 let equippedGear = player.equippedGear;
+let consumableSlotsArr = player.consumableSlots;
+let consumablesModel = consumables;
 
 const shopController = {
 
@@ -113,7 +115,7 @@ function updateViewOnPurchaseAttempt() {
         let newItem = player.inventory[player.inventory.length - 1].refName;
         navigationView.updateText(`You bought a brand new ${newItem}`);
         isAffordable = false;
-        inventoryView.updateInventoryAndEquippedGearView(equippedGear, inventory);
+        inventoryView.updateInventoryAndEquippedGearView(equippedGear, inventory, consumableSlotsArr, consumablesModel);
     } else {
         navigationView.updateText(NOT_ENOUGH_GOLD);
     }

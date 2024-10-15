@@ -1,4 +1,4 @@
-const INVENTORY_CAPACITY = 10;
+const INVENTORY_CAPACITY = 50;
 const CAT_WEAPON = "weapon";
 const CAT_HP_RECOVERY = "hp_recovery";
 const EQUIPPABLE = "equippable";
