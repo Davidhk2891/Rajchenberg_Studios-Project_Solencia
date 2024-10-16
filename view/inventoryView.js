@@ -1,11 +1,6 @@
 /* 
 TODO
-1) Multiple identical items not being added//FIXED
-2) Buying from the store and adding to slot fails for same reason. consList undefined//FIXED
-3) Add check: If consumable to add does not match the one in slot destination, add to next slot.
-If next slot also does not match, don't add
-4) Add a third slot
-5) Add letters to bottom left side of each slot with letters Q,W,E which are the keys for using the slots
+5) Add letters to bottom left side of each slot with letters Q,W which are the keys for using the slots
 6) Left clicking in the slot also consumes it
 7) Right clicking in the slot brings item back to inventory
 */
@@ -124,14 +119,14 @@ function addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
         case CONSUMABLE:
             
             // Compare the inventory[invIndex].type against the consumables list and locate match
-            
-            // I start with 4 apples. I add the 1st one, everything works. I add the second one, consumablesList is undefined.
             consumablesList.forEach(function(consumable) {
 
                 // Since all we want is to add it to the slots, avoid all the consuming logic here
                 // You want to add the right-clicked consumable into the correct consumableSlots object
                 if (inventory[invIndex].refName === consumable.name) {
-                    if (consumableSlots.slotOne.amount < 10) {
+                    if (consumableSlots.slotOne.amount < 10 && 
+                        (consumableSlots.slotOne.refName == null || inventory[invIndex].refName ==
+                        consumableSlots.slotOne.refName)) {
 
                         // Get the current amount
                         slotOneAmount = consumableSlots.slotOne.amount;
@@ -151,7 +146,9 @@ function addSelectedItemToContainer(inventory, invIndex, equippedGear, pWeapon
                         // Add respective consumable asset into slot with the proper dimensions
                         addAssetToConsumableSlot(inventory, invIndex, consumableSlot1Img);
 
-                    } else if(consumableSlots.slotTwo.amount < 10) {
+                    } else if(consumableSlots.slotTwo.amount < 10 &&
+                        (consumableSlots.slotTwo.refName == null || inventory[invIndex].refName ==
+                        consumableSlots.slotTwo.refName)) {
 
                         // Consumable slot 1 full. Start filling up the second one
 
