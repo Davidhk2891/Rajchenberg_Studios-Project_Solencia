@@ -266,6 +266,14 @@ h1, main > p:first-of-type {
     font-weight: 700;
 }
 
+.slots-key {
+    position: absolute;
+    top: 10px;
+    left: 2px;
+    color: var(--ps-color-white);
+    font-weight: 500;
+}
+
 #skill-slot {
     width: 50px;
     min-width: 50px;

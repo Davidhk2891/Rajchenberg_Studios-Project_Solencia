@@ -7,7 +7,7 @@ TODO
 
 import { inventoryCont, playerInvWindow, playerEquippedGearCont, playerInventoryCont,
     pWeapon, pArmor, gameUIContent, consumableSlot1, consumableSlot2,
-    consumableSlot1Amount, consumableSlot2Amount, consumableSlot1Img, consumableSlot2Img} from '../constants/domElements.js';
+    consumableSlot1Amount, consumableSlot2Amount, consumableSlot1Img, consumableSlot2Img } from '../constants/domElements.js';
 
 // UI controls
 let isInventoryShowing = false;

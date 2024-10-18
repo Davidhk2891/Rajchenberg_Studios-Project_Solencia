@@ -37,6 +37,8 @@ export const consumableSlot1Img = document.querySelector('#consumable-slot-1-img
 export const consumableSlot2Img = document.querySelector('#consumable-slot-2-img');
 export const consumableSlot1Amount = document.querySelector('#consumable-slot-1-amount');
 export const consumableSlot2Amount = document.querySelector('#consumable-slot-2-amount');
+export const consumableSlot1Key = document.querySelector('#consumable-slot-1-key-label');
+export const consumableSlot2Key = document.querySelector('#consumable-slot-2-key-label');
 
     // Skill slot
 export const skillSlot = document.querySelector('#skill-slot');
