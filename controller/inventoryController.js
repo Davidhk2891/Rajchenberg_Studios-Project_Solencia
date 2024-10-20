@@ -1,3 +1,11 @@
+/* 
+    Controllers handle:
+        1) Game logic
+        2) User input
+        3) Interaction with the model
+        4) And then passes data to the view to update the UI
+*/
+
 import { player } from "../model/playerModel.js";
 import { inventoryView } from "../view/inventoryView.js";
 import { consumables } from "../model/items/consumablesModel.js";

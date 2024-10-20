@@ -1,6 +1,5 @@
 /* 
 TODO
-5) Add letters to bottom left side of each slot with letters Q,W which are the keys for using the slots
 6) Left clicking in the slot also consumes it
 7) Right clicking in the slot brings item back to inventory
 */

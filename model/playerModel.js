@@ -2,7 +2,11 @@ let player = {
     level : 0,
     xp : 0,
     life : 100,
+    maxLife : 100,
     defense : 0,
+    maxDefense : 0,
+    mana : 50,
+    maxMana : 50,
     strength : 10,
     gold : 5000,
     consumableSlots : {
