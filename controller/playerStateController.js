@@ -1,5 +1,5 @@
 /* 
-    playerState will handle well, the player's state. 
+    playerState will handle player's state. 
     1) hp recovery
 */
 
