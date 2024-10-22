@@ -110,9 +110,64 @@ const inventoryController = {
 
     equipConsumable: function(invItem, index, consumableSlots) {
 
+        let slotOneAmount = null;
+        let slotTwoAmount = null;
+
         // Add consumable to available slot and update UI
-        if (consumableSlots.slotOne.amount < 10) {
-            
+        if (consumableSlots.slotOne.amount < 10 && (consumableSlots.slotOne.refName == null ||
+            invItem.refName == consumableSlots.slotOne.refName)) {
+                
+                // Get the current amount
+                slotOneAmount = consumableSlots.slotOne.amount;
+
+                // Slot one has vacancy
+                consumableSlots.slotOne.refName = invItem.refName;
+
+                // Increase slot one amount
+                slotOneAmount++;
+                consumableSlots.slotOne.amount = slotOneAmount;
+
+                // Update the view for the consumable slot (amount and image)
+                inventoryView.updateConsumableSlots(consumableSlots);
+                inventoryView.updateConsumableImages(this.getConsumableImagePath(invItem.refName));
+
+        } else if (consumableSlots.slotTwo.amount < 10 && (consumableSlots.slotTwo.refName == null ||
+            invItem.refName == consumableSlots.slotTwo.refName)) {
+
+                // Get the current amount
+                slotTwoAmount = consumableSlots.slotTwo.amount;
+
+                // Slot two has vacancy
+                consumableSlots.slotTwo.refName = invItem.refName;
+
+                // Increase slot two amount
+                slotTwoAmount++;
+                consumableSlots.slotTwo.amount = slotTwoAmount;
+
+                // Update the view for the consumable slot (amount and image)
+                inventoryView.updateConsumableSlots(consumableSlots);
+                inventoryView.updateConsumableImages(this.getConsumableImagePath(invItem.refName));
+
+        }
+
+        // Remove consumable item from inventory and re-render
+        player.inventory.splice(index, 1);
+        inventoryView.clearInventory();
+        this.renderPlayerInventory();
+    },
+
+    getConsumableImagePath: function(consumableName) {
+
+        // Return the correct image path based on the consumable name
+        switch (consumableName) {
+            case "Apple":
+                return "./assets/images/consumable_apple.png";
+            case "Small health potion":
+                return "./assets/images/consumable_s_health_pot.png";
+            case "Small mana potion":
+                return "./assets/images/consumable_s_mana_pot.png";
+            default:
+                return "";
         }
     }
 }

@@ -198,6 +198,13 @@ function addAssetToConsumableSlot(inventory, invIndex, consumableSlotImg) {
     consumableSlotImg.src = consumableAssetPath;
 }
 
+/*
+    inventoryView.updateConsumableSlots(consumableSlots);
+    inventoryView.updateConsumableImages(this.getConsumableImagePath(invItem.refName));
+    inventoryView.updateGameContent(uiText: String);
+    inventoryView.clearInventory();
+*/
+
 function runInventoryOpeningBehaviorForListener() {
     if (!isInventoryShowing) {
         playerInvWindow.style.display = "inline";
