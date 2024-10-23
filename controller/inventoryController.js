@@ -1,37 +1,9 @@
-/* 
-    Controllers handle:
-        1) Game logic
-        2) User input
-        3) Interaction with the model
-        4) And then passes data to the view to update the UI
-*/
-
 import { player } from "../model/playerModel.js";
 import { inventoryView } from "../view/inventoryView.js";
-import { consumables } from "../model/items/consumablesModel.js";
-
-const inventoryController_legacy = {
-
-    renderPlayerInventory: function() {
-
-        // Get the player equippable gear array from the player object in playerModel
-        let equippedGearObj = player.equippedGear;
-        // Get the player inventory array from the player object in playerModel
-        let inventoryArr = player.inventory;
-        // Get the player consumable slots array from the player object in playerModel
-        let consumableSlotsArr = player.consumableSlots;
-        // Get the list of consumables for consumable operations
-        let allConsumablesArr = consumables;
-
-        // Show player equipped gear and inventory in the inventory window
-        inventoryView.updateInventoryAndEquippedGearView(equippedGearObj, inventoryArr,
-             consumableSlotsArr, allConsumablesArr);
-    }
-}
 
 const inventoryController = {
 
-    renderPlayerInventory: function(uiText) {
+    renderPlayerInventory: function() {
 
         // Get gear, inventory and consumable slots from respective models
         let equippedGear = player.equippedGear;
@@ -42,25 +14,29 @@ const inventoryController = {
         inventoryView.updateInventoryAndEquippedGearView(equippedGear, inventory);
         inventoryView.updateConsumableSlots(consumableSlots);
 
-        // Call the view to display current game content text from controller
-        inventoryView.updateGameContent(uiText);
-
         // Add user interaction logic for items and inventory
         this.addInventoryInteraction(inventory, equippedGear, consumableSlots);
-        
     },
 
     addInventoryInteraction: function(inventory, equippedGear, consumableSlots) {
+
+        // Get the inventoryController object for context
+        const self = this;
 
         // Loop through inventory items and set up event listeners for user input
         inventory.forEach(function(invItem, index) {
 
             const pInv = document.querySelectorAll('inventory-item')[index];
-            pInv.style.cursor = "pointer";
 
+            // ERROR: Something is wrong. right-clicking fails if I buy items from stores
             pInv.addEventListener('contextmenu', function(event) {
                 event.preventDefault();
-                this.handleItemUse(invItem, index, equippedGear, consumableSlots);
+                console.log(`Index from item pressed: ${invItem.refName}`);
+                self.handleItemUse(invItem, index, equippedGear, consumableSlots);
+            });
+
+            pInv.addEventListener('click', function() {
+                console.log(`Index from item pressed: ${invItem.refName}`);
             });
         });
     },
@@ -95,7 +71,6 @@ const inventoryController = {
                 tempEquippedGearHolder = equippedGear.armor;
             equippedGear.armor = invItem;
         }
-        let updatedGearToUI = `You just equipped your ${equippedGear.weapon.refName}`;
 
         // Remove item from inventory
         player.inventory.splice(index, 1);
@@ -104,14 +79,21 @@ const inventoryController = {
         if (tempEquippedGearHolder != null)
             inventory.push(tempEquippedGearHolder);
 
+        // Update UI on equippable latest action
+        let updatedGearToUI = `You just equipped your ${invItem.refName}`;
+        this.updateUIonInventoryItemEngaged(updatedGearToUI);
+
         // re-render
-        this.renderPlayerInventory(updatedGearToUI);
+        inventoryView.clearInventory();
+        this.renderPlayerInventory();
     },
 
     equipConsumable: function(invItem, index, consumableSlots) {
 
         let slotOneAmount = null;
         let slotTwoAmount = null;
+        let updatedConsumableUseToUI = null;
+        let isConsumableEquipped = false;
 
         // Add consumable to available slot and update UI
         if (consumableSlots.slotOne.amount < 10 && (consumableSlots.slotOne.refName == null ||
@@ -129,7 +111,13 @@ const inventoryController = {
 
                 // Update the view for the consumable slot (amount and image)
                 inventoryView.updateConsumableSlots(consumableSlots);
-                inventoryView.updateConsumableImages(this.getConsumableImagePath(invItem.refName));
+                inventoryView.updateConsumableImages(1, this.getConsumableImagePath(invItem.refName));
+
+                // Update UI on consumable latest action
+                updatedConsumableUseToUI = `You equipped a fresh ${invItem.refName}`;
+                this.updateUIonInventoryItemEngaged(updatedConsumableUseToUI);
+
+                isConsumableEquipped = true;
 
         } else if (consumableSlots.slotTwo.amount < 10 && (consumableSlots.slotTwo.refName == null ||
             invItem.refName == consumableSlots.slotTwo.refName)) {
@@ -146,14 +134,36 @@ const inventoryController = {
 
                 // Update the view for the consumable slot (amount and image)
                 inventoryView.updateConsumableSlots(consumableSlots);
-                inventoryView.updateConsumableImages(this.getConsumableImagePath(invItem.refName));
+                inventoryView.updateConsumableImages(2, this.getConsumableImagePath(invItem.refName));
 
+                // Update UI on consumable latest action
+                updatedConsumableUseToUI = `You equipped a fresh ${invItem.refName}`;
+                this.updateUIonInventoryItemEngaged(updatedConsumableUseToUI);
+
+                isConsumableEquipped = true;
+
+        } else {
+
+            if (consumableSlots.slotTwo.amount == 10) {
+                updatedConsumableUseToUI = "Bro there ain't no more room! what are you doing?";
+                this.updateUIonInventoryItemEngaged(updatedConsumableUseToUI);
+            }
+
+            isConsumableEquipped = false;
         }
 
-        // Remove consumable item from inventory and re-render
-        player.inventory.splice(index, 1);
-        inventoryView.clearInventory();
-        this.renderPlayerInventory();
+        // Remove consumable item from inventory and re-render if this one was equipped
+        if (isConsumableEquipped) {
+            player.inventory.splice(index, 1);
+            inventoryView.clearInventory();
+            this.renderPlayerInventory();
+        }
+    },
+
+    updateUIonInventoryItemEngaged: function(uiText) {
+
+        // Call the view to display current game content text from controller
+        inventoryView.updateGameContent(uiText);
     },
 
     getConsumableImagePath: function(consumableName) {
@@ -172,4 +182,4 @@ const inventoryController = {
     }
 }
 
-export { inventoryController_legacy };
+export { inventoryController };

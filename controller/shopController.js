@@ -16,16 +16,14 @@ import { weapons } from '../model/items/weaponsModel.js';
 import { consumables } from '../model/items/consumablesModel.js';
 import { player } from '../model/playerModel.js';
 
-import { inventoryView } from '../view/inventoryView.js';
+import { inventoryController } from './inventoryController.js';
+
 import { navigationView } from '../view/navigationView.js';
 
 let newInventoryItem;
 let isAffordable = false;
 let isInventoryFull = false;
 let inventory = player.inventory;
-let equippedGear = player.equippedGear;
-let consumableSlotsArr = player.consumableSlots;
-let consumablesModel = consumables;
 
 const shopController = {
 
@@ -115,7 +113,7 @@ function updateViewOnPurchaseAttempt() {
         let newItem = player.inventory[player.inventory.length - 1].refName;
         navigationView.updateText(`You bought a brand new ${newItem}`);
         isAffordable = false;
-        inventoryView.updateInventoryAndEquippedGearView(equippedGear, inventory, consumableSlotsArr, consumablesModel);
+        inventoryController.renderPlayerInventory();
     } else {
         navigationView.updateText(NOT_ENOUGH_GOLD);
     }
