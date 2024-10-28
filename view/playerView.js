@@ -3,7 +3,7 @@
 export const hpMeter = document.getElementById('hp-meter');
 export const mpMeter = document.getElementById('mp-meter');
 */
-import { lvlText, xpText, hpMeter, mpMeter } from "../constants/domElements.js";
+import { lvlText, xpText, hpMeter, mpMeter, gameUIContent } from "../constants/domElements.js";
 
 const playerView = {
 
@@ -15,9 +15,10 @@ const playerView = {
         mpMeter.style.height = mana;
     },
 
-    updateLifeBar: function(life) {
+    updateLifeBar: function(life, updatedContent) {
 
         hpMeter.style.height = life;
+        gameUIContent.innerText = updatedContent;
     }
 }
 

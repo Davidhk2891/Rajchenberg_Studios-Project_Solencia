@@ -3,11 +3,11 @@ let player = {
     xp : GAME_START_XP,
     maxLevel: 500,
     life : GAME_START_HP,
-    maxLife : GAME_START_HP,
+    maxLife : GAME_START_MAX_HP,
     defense : 0,
     maxDefense : 0,
     mana : GAME_START_MP,
-    maxMana : GAME_START_MP,
+    maxMana : GAME_START_MAX_MP,
     strength : 10,
     gold : 5000,
     consumableSlots : {
@@ -26,9 +26,9 @@ let player = {
     },
     equippedGear : {
         weapon: {
-            refName: "Small Axe",
-            category: "weapon",
-            type: "equippable"
+            refName: null,
+            category: null,
+            type: null
         },
         armor: {
             refName: null,
@@ -41,6 +41,11 @@ let player = {
             refName: "Apple",
             category: "hp_recovery",
             type: "consumable"
+        },
+        {
+            refName: "Small Axe",
+            category: "weapon",
+            type: "equippable"
         }
     ],
     states : [

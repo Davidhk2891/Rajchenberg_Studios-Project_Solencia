@@ -56,7 +56,7 @@ const inventoryController = {
                 if (eventType == 'contextmenu')
                     this.equipConsumable(invItem, index, consumableSlots);
                 else if (eventType == 'click')
-                    this.useConsumable(invItem);
+                    this.useConsumable(invItem, index);
                 break;
         };
     },
@@ -159,36 +159,32 @@ const inventoryController = {
 
         // Remove consumable item from inventory and re-render if this one was equipped
         if (isConsumableEquipped) {
-            player.inventory.splice(index, 1);
-            inventoryView.clearInventory();
-            this.renderPlayerInventory();
+            this.disposeConsumable(index);
         }
     },
 
-    useConsumable: function(invItem) {
+    useConsumable: function(invItem, index) {
         // Algo
         /* 
-            1) Call playerStateController's healPlayer, pass the amount argument based on the item refName
-            2) Update UI indicating how much was healed
+            1) Call playerStateController's healPlayer, pass the amount argument based on the item refName - DONE
+            2) Update UI indicating how much was healed - DONE
             3) Remove selected item from inventory
             NOTE: You can consume health and mana recovery consumables even if the player is maxed out
         */
         switch(invItem.refName) {
             case "Apple":
-                console.log("life BEFORE healing with Apple: " + player.life);
                 playerStateController.healPlayer(consumables[0].effect);
-                console.log("life AFTER healing with Apple: " + player.life);
                 break;
             case "Small health potion":
-                console.log("life BEFORE healing with Small health potion: " + player.life);
                 playerStateController.healPlayer(consumables[1].effect);
-                console.log("life AFTER healing with Small health potion: " + player.life);
                 break;
             case "Small mana potion":
                 console.log('Small mana potion to be used up here');
                 break;
         }
 
+        // Remove consumable item from inventory and re-render if this one was equipped
+        this.disposeConsumable(index);
     },
 
     updateUIonInventoryItemEngaged: function(uiText) {
@@ -210,6 +206,12 @@ const inventoryController = {
             default:
                 return "";
         }
+    },
+
+    disposeConsumable: function(index) {
+        player.inventory.splice(index, 1);
+        inventoryView.clearInventory();
+        this.renderPlayerInventory();
     }
 }
 

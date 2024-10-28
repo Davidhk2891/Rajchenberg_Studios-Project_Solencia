@@ -22,10 +22,10 @@ const playerStateController = {
         playerView.initializeUIFromPlayerState(player.level, player.xp, UIReadyLife, UIReadyMana);
     },
     
-    healPlayer: function(life) {
+    healPlayer: function(amountToHeal) {
 
         // Add amount to current player's life
-        player.life += life;
+        player.life += amountToHeal;
 
         // Ensure that healing does not go over player's max life
         if (player.life > player.maxLife) {
@@ -34,7 +34,8 @@ const playerStateController = {
 
         // Update player's life UI bar
         let UIReadyLife = player.life.toString() + "%";
-        playerView.updateLifeBar(UIReadyLife);
+        let updatedGameContent = "You healed " + amountToHeal + " HP.";
+        playerView.updateLifeBar(UIReadyLife, updatedGameContent);
     }
 }
 

@@ -23,6 +23,7 @@ const navigationView = {
         buttonText.forEach(function(text, index) {
             const button = document.createElement('button');
             button.style.cursor = "pointer";
+            button.style.border = " 4px groove black";
             button.innerText = text;
             button.addEventListener('click', buttonFunctions[index]); // Attach the button function
             gameControlsDynamicNavCont.appendChild(button); // Add button to the UI
