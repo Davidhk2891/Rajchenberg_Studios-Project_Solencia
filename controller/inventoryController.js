@@ -1,4 +1,8 @@
 import { player } from "../model/playerModel.js";
+import { consumables } from "../model/items/consumablesModel.js";
+
+import { playerStateController } from "./playerStateController.js";
+
 import { inventoryView } from "../view/inventoryView.js";
 
 const inventoryController = {
@@ -28,20 +32,18 @@ const inventoryController = {
 
             const pInv = document.querySelectorAll('inventory-item')[index];
 
-            // ERROR: Something is wrong. right-clicking fails if I buy items from stores
             pInv.addEventListener('contextmenu', function(event) {
                 event.preventDefault();
-                console.log(`Index from item pressed: ${invItem.refName}`);
-                self.handleItemUse(invItem, index, equippedGear, consumableSlots);
+                self.handleItemUse(invItem, index, equippedGear, consumableSlots, event.type);
             });
 
-            pInv.addEventListener('click', function() {
-                console.log(`Index from item pressed: ${invItem.refName}`);
+            pInv.addEventListener('click', function(event) {
+                self.handleItemUse(invItem, index, equippedGear, consumableSlots, event.type);
             });
         });
     },
 
-    handleItemUse: function(invItem, index, equippedGear, consumableSlots) {
+    handleItemUse: function(invItem, index, equippedGear, consumableSlots, eventType) {
 
         // Logic to handle equipping items and consumables and using consumables from inv
         switch (invItem.type) {
@@ -51,7 +53,10 @@ const inventoryController = {
                 break;
 
             case CONSUMABLE:
-                this.equipConsumable(invItem, index, consumableSlots);
+                if (eventType == 'contextmenu')
+                    this.equipConsumable(invItem, index, consumableSlots);
+                else if (eventType == 'click')
+                    this.useConsumable(invItem);
                 break;
         };
     },
@@ -77,7 +82,7 @@ const inventoryController = {
 
         // If temporary equipped gear holder isn't null, add that back to inventory
         if (tempEquippedGearHolder != null)
-            inventory.push(tempEquippedGearHolder);
+            player.inventory.push(tempEquippedGearHolder);
 
         // Update UI on equippable latest action
         let updatedGearToUI = `You just equipped your ${invItem.refName}`;
@@ -158,6 +163,32 @@ const inventoryController = {
             inventoryView.clearInventory();
             this.renderPlayerInventory();
         }
+    },
+
+    useConsumable: function(invItem) {
+        // Algo
+        /* 
+            1) Call playerStateController's healPlayer, pass the amount argument based on the item refName
+            2) Update UI indicating how much was healed
+            3) Remove selected item from inventory
+            NOTE: You can consume health and mana recovery consumables even if the player is maxed out
+        */
+        switch(invItem.refName) {
+            case "Apple":
+                console.log("life BEFORE healing with Apple: " + player.life);
+                playerStateController.healPlayer(consumables[0].effect);
+                console.log("life AFTER healing with Apple: " + player.life);
+                break;
+            case "Small health potion":
+                console.log("life BEFORE healing with Small health potion: " + player.life);
+                playerStateController.healPlayer(consumables[1].effect);
+                console.log("life AFTER healing with Small health potion: " + player.life);
+                break;
+            case "Small mana potion":
+                console.log('Small mana potion to be used up here');
+                break;
+        }
+
     },
 
     updateUIonInventoryItemEngaged: function(uiText) {

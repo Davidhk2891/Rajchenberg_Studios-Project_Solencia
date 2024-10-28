@@ -16,9 +16,10 @@
         <script src="./utils/logger.js" type="module"></script>
         <!-- Constants -->
         <script src="./constants/domElements.js" type="module"></script>
-        <script src="./constants/inventory.js"></script>
-        <script src="./constants/rates.js"></script>
-        <script src="./constants/shop.js"></script>
+        <script src="./constants/inventory.js" defer></script>
+        <script src="./constants/rates.js" defer></script>
+        <script src="./constants/shop.js" defer></script>
+        <script src="./constants/player.js" defer></script>
         <!-- Models -->
         <script src="./model/items/consumablesModel.js" type="module"></script>
         <script src="./model/items/weaponsModel.js" type="module"></script>
@@ -112,7 +113,7 @@
 
                         <div id="hp-cont">
                             <div id="hp-meter">
-                                <p id="hp">HP</p>
+                                <p id="hp"></p>
                             </div>
                         </div>
 
@@ -168,9 +169,10 @@
 
                         <div id="mp-cont">
                             <div id="mp-meter">
-                                <p id="mp">MP</p>
+                                <p id="mp"></p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
