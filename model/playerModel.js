@@ -9,7 +9,7 @@ let player = {
     mana : GAME_START_MP,
     maxMana : GAME_START_MAX_MP,
     strength : 10,
-    gold : 5000,
+    gold : 15000,
     consumableSlots : {
         slotOne : {
             refName: null,
@@ -37,6 +37,26 @@ let player = {
         }
     },
     inventory : [
+        {
+            refName: "Apple",
+            category: "hp_recovery",
+            type: "consumable"
+        },
+        {
+            refName: "Apple",
+            category: "hp_recovery",
+            type: "consumable"
+        },
+        {
+            refName: "Apple",
+            category: "hp_recovery",
+            type: "consumable"
+        },
+        {
+            refName: "Apple",
+            category: "hp_recovery",
+            type: "consumable"
+        },
         {
             refName: "Apple",
             category: "hp_recovery",

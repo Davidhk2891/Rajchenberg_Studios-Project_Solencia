@@ -18,8 +18,62 @@ const inventoryController = {
         inventoryView.updateInventoryAndEquippedGearView(equippedGear, inventory);
         inventoryView.updateConsumableSlots(consumableSlots);
 
-        // Add user interaction logic for items and inventory
+        // Add user interaction logic for items in inventory, equipped gear and consumable slots
         this.addInventoryInteraction(inventory, equippedGear, consumableSlots);
+        this.addConsumableSlotsInteraction(consumableSlots);
+    },
+
+    addConsumableSlotsInteraction: function(consumableSlots) {
+
+        let self = this;
+        document.addEventListener('keyup', function(event) {
+            switch (event.key) {
+                case 'q':
+                    console.log('q pressed');
+                    // if (consumableSlots.slotOne.amount > 0) {
+
+                    // Something in here is called 6 times. Find out what, step by step
+
+                    //     switch (consumableSlots.slotOne.refName) {
+                    //         case "Apple":
+                    //             playerStateController.healPlayer(consumables[0].effect);
+                    //             break;
+                    //         case "Small health potion":
+                    //             playerStateController.healPlayer(consumables[1].effect);
+                    //             break;
+                    //         case "Small mana potion":
+                    //             console.log('Small mana potion to be used up here');
+                    //             break;
+                    //     }
+
+                    //     consumableSlots.slotOne.amount--;
+                    //     console.log("Remains on slot 1: " + consumableSlots.slotOne.amount);
+                    //     // if (consumableSlots.slotOne.amount >= 2) {
+                    //     //     consumableSlots.slotOne.amount--;
+                    //     //     inventoryView.updateConsumableSlots(consumableSlots);
+                    //     // } else {
+                    //     //     consumableSlots.slotOne.amount = 0;
+                    //     //     inventoryView.updateConsumableSlots(consumableSlots);
+                    //     //     inventoryView.updateConsumableImages(1, self.getConsumableImagePath("Empty"));
+                    //     // }
+                    // }
+                case 'w':
+                    if (consumableSlots.slotTwo.amount > 0) {
+                        switch (consumableSlots.slotTwo.refName) {
+                            case "Apple":
+                                playerStateController.healPlayer(consumables[0].effect);
+                                break;
+                            case "Small health potion":
+                                playerStateController.healPlayer(consumables[1].effect);
+                                break;
+                            case "Small mana potion":
+                                console.log('Small mana potion to be used up here');
+                                break;
+                        }
+                    }
+                    break;
+            }
+        });
     },
 
     addInventoryInteraction: function(inventory, equippedGear, consumableSlots) {
@@ -34,16 +88,16 @@ const inventoryController = {
 
             pInv.addEventListener('contextmenu', function(event) {
                 event.preventDefault();
-                self.handleItemUse(invItem, index, equippedGear, consumableSlots, event.type);
+                self.handleInventoryItemUse(invItem, index, equippedGear, consumableSlots, event.type);
             });
 
             pInv.addEventListener('click', function(event) {
-                self.handleItemUse(invItem, index, equippedGear, consumableSlots, event.type);
+                self.handleInventoryItemUse(invItem, index, equippedGear, consumableSlots, event.type);
             });
         });
     },
 
-    handleItemUse: function(invItem, index, equippedGear, consumableSlots, eventType) {
+    handleInventoryItemUse: function(invItem, index, equippedGear, consumableSlots, eventType) {
 
         // Logic to handle equipping items and consumables and using consumables from inv
         switch (invItem.type) {
@@ -159,7 +213,7 @@ const inventoryController = {
 
         // Remove consumable item from inventory and re-render if this one was equipped
         if (isConsumableEquipped) {
-            this.disposeConsumable(index);
+            this.disposeInventoryConsumable(index);
         }
     },
 
@@ -184,7 +238,7 @@ const inventoryController = {
         }
 
         // Remove consumable item from inventory and re-render if this one was equipped
-        this.disposeConsumable(index);
+        this.disposeInventoryConsumable(index);
     },
 
     updateUIonInventoryItemEngaged: function(uiText) {
@@ -203,12 +257,14 @@ const inventoryController = {
                 return "./assets/images/consumable_s_health_pot.png";
             case "Small mana potion":
                 return "./assets/images/consumable_s_mana_pot.png";
+            case "Empty":
+                return "./assets/images/consumable_slot_empty.png";
             default:
                 return "";
         }
     },
 
-    disposeConsumable: function(index) {
+    disposeInventoryConsumable: function(index) {
         player.inventory.splice(index, 1);
         inventoryView.clearInventory();
         this.renderPlayerInventory();
