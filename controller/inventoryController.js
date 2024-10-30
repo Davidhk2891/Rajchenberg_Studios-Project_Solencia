@@ -57,6 +57,7 @@ const inventoryController = {
                             consumableSlots.slotOne.amount--;
                             inventoryView.updateConsumableSlots(consumableSlots);
                         } else {
+                            consumableSlots.slotOne.refName = null;
                             consumableSlots.slotOne.amount = 0;
                             inventoryView.updateConsumableSlots(consumableSlots);
                             inventoryView.updateConsumableImages(1, self.getConsumableImagePath("Empty"));
@@ -83,6 +84,7 @@ const inventoryController = {
                             consumableSlots.slotTwo.amount--;
                             inventoryView.updateConsumableSlots(consumableSlots);
                         } else {
+                            consumableSlots.slotTwo.refName = null;
                             consumableSlots.slotTwo.amount = 0;
                             inventoryView.updateConsumableSlots(consumableSlots);
                             inventoryView.updateConsumableImages(2, self.getConsumableImagePath("Empty"));
