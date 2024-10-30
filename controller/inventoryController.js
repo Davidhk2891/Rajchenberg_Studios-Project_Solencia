@@ -7,6 +7,8 @@ import { inventoryView } from "../view/inventoryView.js";
 
 const inventoryController = {
 
+    consumableListenerAdded: false,
+
     renderPlayerInventory: function() {
 
         // Get gear, inventory and consumable slots from respective models
@@ -26,39 +28,45 @@ const inventoryController = {
     addConsumableSlotsInteraction: function(consumableSlots) {
 
         let self = this;
+
+        if (self.consumableListenerAdded) return;
+        self.consumableListenerAdded = true;
+
+        /* 
+            New bug: Every consuming event reduces the amount remaining by 2 instead of 1    
+        */
+
         document.addEventListener('keyup', function(event) {
             switch (event.key) {
                 case 'q':
-                    console.log('q pressed');
-                    // if (consumableSlots.slotOne.amount > 0) {
+                    if (consumableSlots.slotOne.amount > 0) {
 
-                    // Something in here is called 6 times. Find out what, step by step
+                        switch (consumableSlots.slotOne.refName) {
+                            case "Apple":
+                                playerStateController.healPlayer(consumables[0].effect);
+                                break;
+                            case "Small health potion":
+                                playerStateController.healPlayer(consumables[1].effect);
+                                break;
+                            case "Small mana potion":
+                                console.log('Small mana potion to be used up here');
+                                break;
+                        }
 
-                    //     switch (consumableSlots.slotOne.refName) {
-                    //         case "Apple":
-                    //             playerStateController.healPlayer(consumables[0].effect);
-                    //             break;
-                    //         case "Small health potion":
-                    //             playerStateController.healPlayer(consumables[1].effect);
-                    //             break;
-                    //         case "Small mana potion":
-                    //             console.log('Small mana potion to be used up here');
-                    //             break;
-                    //     }
+                        if (consumableSlots.slotOne.amount >= 2) {
+                            consumableSlots.slotOne.amount--;
+                            inventoryView.updateConsumableSlots(consumableSlots);
+                        } else {
+                            consumableSlots.slotOne.amount = 0;
+                            inventoryView.updateConsumableSlots(consumableSlots);
+                            inventoryView.updateConsumableImages(1, self.getConsumableImagePath("Empty"));
+                        }
+                    }
+                    break;
 
-                    //     consumableSlots.slotOne.amount--;
-                    //     console.log("Remains on slot 1: " + consumableSlots.slotOne.amount);
-                    //     // if (consumableSlots.slotOne.amount >= 2) {
-                    //     //     consumableSlots.slotOne.amount--;
-                    //     //     inventoryView.updateConsumableSlots(consumableSlots);
-                    //     // } else {
-                    //     //     consumableSlots.slotOne.amount = 0;
-                    //     //     inventoryView.updateConsumableSlots(consumableSlots);
-                    //     //     inventoryView.updateConsumableImages(1, self.getConsumableImagePath("Empty"));
-                    //     // }
-                    // }
                 case 'w':
                     if (consumableSlots.slotTwo.amount > 0) {
+
                         switch (consumableSlots.slotTwo.refName) {
                             case "Apple":
                                 playerStateController.healPlayer(consumables[0].effect);
@@ -69,6 +77,15 @@ const inventoryController = {
                             case "Small mana potion":
                                 console.log('Small mana potion to be used up here');
                                 break;
+                        }
+
+                        if (consumableSlots.slotTwo.amount >= 2) {
+                            consumableSlots.slotTwo.amount--;
+                            inventoryView.updateConsumableSlots(consumableSlots);
+                        } else {
+                            consumableSlots.slotTwo.amount = 0;
+                            inventoryView.updateConsumableSlots(consumableSlots);
+                            inventoryView.updateConsumableImages(2, self.getConsumableImagePath("Empty"));
                         }
                     }
                     break;
@@ -258,7 +275,7 @@ const inventoryController = {
             case "Small mana potion":
                 return "./assets/images/consumable_s_mana_pot.png";
             case "Empty":
-                return "./assets/images/consumable_slot_empty.png";
+                return "./assets/images/consumable_slot_empty.gif";
             default:
                 return "";
         }
