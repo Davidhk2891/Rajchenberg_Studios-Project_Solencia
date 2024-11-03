@@ -17,7 +17,7 @@ const navigationView = {
         gameUIContent.innerText = location.text;
     },
 
-    updateButtons: function(buttonText, buttonFunctions, controller) {
+    updateButtons: function(buttonText, buttonFunctions) {
         
         gameControlsDynamicNavCont.innerHTML = ''; // Clear previous buttons
         buttonText.forEach(function(text, index) {

@@ -2,6 +2,7 @@ import { locations } from '../model/locationsModel.js';
 import { inventoryView } from '../view/inventoryView.js';
 import { navigationView } from '../view/navigationView.js';
 import { shopController } from './shopController.js';
+import { fightController } from './fightController.js';
 
 /* 
 The controller handles the logic when the player clicks the "Go to Blacksmith shop" button. 
@@ -34,14 +35,16 @@ const navigationController = {
                         controller = this;
                     } else if (funcObj.controller === 'shopController') {
                         controller = shopController;
+                    } else if (funcObj.controller === 'fightController') {
+                        controller = fightController;
                     }
 
                     // Check if the function exists in the controller
                     if (controller && typeof controller[funcObj.function] === 'function') {
-                        // console.log(`Function ${funcObj.function} found in ${funcObj.controller}`);
+                        console.log(`Function ${funcObj.function} found in ${funcObj.controller}`);
                         return controller[funcObj.function].bind(controller);
                     } else {
-                        // console.log(`Function ${funcObj.function} not found in ${funcObj.controller}`);
+                        console.log(`Function ${funcObj.function} not found in ${funcObj.controller}`);
                         return () => {};
                     }
 

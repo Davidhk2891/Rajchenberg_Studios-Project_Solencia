@@ -9,7 +9,7 @@ let player = {
     mana : GAME_START_MP,
     maxMana : GAME_START_MAX_MP,
     strength : 10,
-    gold : 15000,
+    gold : 50,
     consumableSlots : {
         slotOne : {
             refName: null,
@@ -41,38 +41,13 @@ let player = {
             refName: "Apple",
             category: "hp_recovery",
             type: "consumable"
-        },
-        {
-            refName: "Apple",
-            category: "hp_recovery",
-            type: "consumable"
-        },
-        {
-            refName: "Apple",
-            category: "hp_recovery",
-            type: "consumable"
-        },
-        {
-            refName: "Apple",
-            category: "hp_recovery",
-            type: "consumable"
-        },
-        {
-            refName: "Apple",
-            category: "hp_recovery",
-            type: "consumable"
-        },
-        {
-            refName: "Small Axe",
-            category: "weapon",
-            type: "equippable"
         }
     ],
     states : [
         {
             name: "Fight mob",
-            "button text": ["Attack", "Special attack", "Flee"],
-            "button functions": ["attack", "specialAttack", "flee"],
+            "button text": ["Attack", "Special attack", "Dodge", "Flee"],
+            "button functions": ["attack", "specialAttack", "dodge", "flee"],
             text: "You get into your fighting stance and engage the enemy."
         },
         {
