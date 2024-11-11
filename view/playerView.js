@@ -15,10 +15,11 @@ const playerView = {
         mpMeter.style.height = mana;
     },
 
-    updateLifeBar: function(life, updatedContent) {
+    updateLifeBar: function(life, updatedContent = null) {
 
         hpMeter.style.height = life;
-        gameUIContent.innerText = updatedContent;
+        if (updatedContent != null)
+            gameUIContent.innerText = updatedContent;
     }
 }
 

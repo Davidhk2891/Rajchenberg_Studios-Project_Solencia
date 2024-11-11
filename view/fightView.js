@@ -8,7 +8,7 @@ const fightView = {
         gameUIContent.innerText = stateContent;
     },
 
-    updatePlayerStateButtons: function(buttonsText, buttonsFunctions) {
+    updatePlayerStateButtons: function(buttonsText, buttonsCallbacks) {
 
         // Render button text and functions
         gameControlsDynamicNavCont.innerText = '';
@@ -19,7 +19,8 @@ const fightView = {
             button.style.border = "4px groove black";
             button.innerText = text;
             gameControlsDynamicNavCont.appendChild(button);
-            button.addEventListener('click', buttonsFunctions[index]);
+            // The listener should be in the controller
+            button.addEventListener('click', buttonsCallbacks[index]);
         });
     },
 
