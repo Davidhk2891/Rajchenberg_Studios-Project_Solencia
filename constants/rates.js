@@ -1,5 +1,6 @@
 const GOLD_DROP_RATE = 6.7;
 const WEAPON_BREAK_RATE = 0.1;
 const MONSTER_HIT_RATE = 5;
-const PLAYER_HIT_RATE_DIFF = 0.2;
+const PLAYER_HIT_RATE = 0.6;
+const MOB_HIT_RATE = 0.6;
 const XP_GAIN_RATE = 0.4;

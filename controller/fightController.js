@@ -1,13 +1,19 @@
 import { player } from "../model/playerModel.js";
-import { mobs } from "../model/mobs/mobs.js";
+import { mobs } from "../model/mobs/mobsModel.js";
 import { weapons } from "../model/items/weaponsModel.js";
 import { fightView } from "../view/fightView.js";
 import { playerView } from "../view/playerView.js";
 
-let currentMob;
+let fightStateUI;
+let mobIndex = 0;
+let currentMob = {
+    mobName : mobs[mobIndex].name,
+    mobLife : mobs[mobIndex].life,
+    mobLevel : mobs[mobIndex].level
+};
 const fightController = {
 
-    engageMob: function(mobIndex) {
+    engageMob: function() {
 
         // Get mob data
         let mobName = mobs[mobIndex].name;
@@ -33,72 +39,68 @@ const fightController = {
 
     attack: function() {
 
-        // Establish event to UI. Need: gameUIContent, weapon from equippedGear
-        let mobGreeting = `A ${mobs[currentMob]} is attacking you.`;
+        // Establish event to UI
+        let mobGreeting = `A ${currentMob.mobName} is attacking you.`;
         let playerGreeting = null; 
         if (player.equippedGear.weapon.refName != null) {
             playerGreeting = `You strike back with your ${player.equippedGear.weapon.refName}`;
         } else {
             playerGreeting = `You strike back with your bare hands. Good luck with that mate.`;
         }
-        fightGreeting = mobGreeting + " " + playerGreeting;
-        fightView.updatePlayerStateText(fightGreeting);
+        fightStateUI = mobGreeting + " " + playerGreeting;
 
-        // Define mob dealing damage to player. Need: getMobAttackValue(), mobs[currentMonster], player.life
-        player.life -= this.getMobAttackValue(mobs[currentMob].level);
-        playerView.updateLifeBar(player.life);
-
-        // Define player dealing damage to mob. Need: isMonsterHit(), weapon from equippedGear, mobLife, mobLifeText, gameUIContent
+        // Define player dealing damage to mob
         if (this.isMobToBeHit()) {
-            /* 
-            if (isMonsterHit()) {
-                let damageDealt = weapons[currentWeapon].damage + Math.floor(Math.random() * xp) + 1
-                monsterLife -= damageDealt;
-                monsterLifeText.innerText = monsterLife;
-                text.innerText += "\n\n" + "You deal " + damageDealt + " damage."; 
-            } else {
-                text.innerText += "\n\n" + "You missed.";
-            }
-            */
-
             let equippedWeaponDamage = null;
-            weapons.forEach((weapon, index) => {
+            weapons.forEach((weapon) => {
                 if (weapon.name == player.equippedGear.weapon.refName)
                     equippedWeaponDamage = weapon.damage;                
             });
-            if (equippedWeaponDamage == null)
+            if (equippedWeaponDamage == null) {
+                //  This means the player is fighting without an equipped weapon. Bare hands.
                 equippedWeaponDamage = 1;
+            }
+            let damageDealt = equippedWeaponDamage + Math.floor(Math.random() * player.xp) + 1;
+            
+            // Apply damage dealt to mob
+            currentMob.mobLife -= damageDealt;
+            // Update mob health UI
+            fightView.updateMobLife(currentMob.mobLife);
+            fightStateUI += `\n\n\n> You hit back at the ${currentMob.mobName} and deal ${damageDealt} DMG to it.`;
+        } else {
+            fightStateUI += `\n\n\n> You attempt to hit back at the ${currentMob.mobName} but you miss...`;
+        }
 
-            let damageDealt = equippedWeaponDamage + Math.floor(Math.random() * xp) + 1;
-            // Create an instance of monster life
+        // Define mob dealing damage to player
+        if (this.isPlayerToBeHit()) {
+            let mobHitPoints = this.getMobAttackValue(currentMob.mobLevel);
+            player.life -= mobHitPoints;
+            let UIReadyLife = player.life.toString() + "%";
+            playerView.updateLifeBar(UIReadyLife);
+            fightStateUI += `\n\n\n> The ${currentMob.mobName} hits you and you lose ${mobHitPoints}HP...`;
+            if (player.life < 20) {
+                fightStateUI += `\nYou are bleeding pretty bad...`;
+            } else if (player.life < 10) {
+                fightStateUI += `\nYou are bleeding out fast and starting to feel light-headed...`;
+            }
+        } else {
+            fightStateUI += `\n\n\n> The ${currentMob.mobName} attacks you... but misses.`;
         }
 
         // Check player's current life. Need: playerState.die(), playerState.killMonster()
+        if (player.life <= 0) {
+
+            // Player died.
+            this.playerDies();
+        } else if (currentMob.mobLife <= 0) {
+
+            // Mob died.
+            this.killMob();
+        }
 
         // Run weapon breaking odds. Need: weapon break rate, player.inventory
         /* 
         function attack() {
-            
-            // Define mob dealing damage to player
-            life -= getMonsterAttackValue(monsters[currentMonster].level);
-            lifeText.innerText = life;
-            
-            // Define player dealing damage to mob
-            if (isMonsterHit()) {
-                let damageDealt = weapons[currentWeapon].damage + Math.floor(Math.random() * xp) + 1
-                monsterLife -= damageDealt;
-                monsterLifeText.innerText = monsterLife;
-                text.innerText += "\n\n" + "You deal " + damageDealt + " damage."; 
-            } else {
-                text.innerText += "\n\n" + "You missed.";
-            }
-            
-            // Check player's current life
-            if (life <= 0) {
-                die();
-            } else if (monsterLife <= 0) {
-                killMonster();
-            }
             
             // Weapon breaking odds
             if (Math.random() == weaponBreakRate && inventory.length > 1) {
@@ -107,61 +109,82 @@ const fightController = {
                 currentWeapon--;
             }
         }
-        */  
+        */
+       
+        // Update fight state UI
+        fightView.updatePlayerStateText(fightStateUI);
     },
 
     getMobAttackValue: function(mobLevel) {
 
+        // Starting the game this is 10 - 0. So minimum possible hit from mob is 10. Leave this as is for now.
         let hit = (mobLevel * MONSTER_HIT_RATE) - (Math.floor(Math.random() * player.xp));
-        console.log(`${mobs[currentMob].name} deals ${hit} damage to you`);
         return hit > 0 ? hit : 0;
     },
 
     isMobToBeHit: function() {
     
-        return Math.random() >= PLAYER_HIT_RATE_DIFF || player.life < 20;
+        return Math.random() <= PLAYER_HIT_RATE || player.life < 20 ? true : false;
+    },
+
+    isPlayerToBeHit: function() {
+
+        return Math.random() <= MOB_HIT_RATE || currentMob.mobLife < (currentMob.mobLife / 3) ? true : false;
+    },
+
+    playerDies: function() {
+
+        // LEFT HERE
+        // Check on the previous project how the die was handled.
+        // You need to call the player state that renders all the die components.
+        // You need to apply what is inside engageMob() but for dying.
+    },
+
+    killMob: function() {
+
     },
 
     fightCreeper: function() {
-        currentMob = 0;
-        this.engageMob(currentMob);
+        mobIndex = 0;
+        this.engageMob(mobIndex);
     },
     
     fightScorchling: function() {
-        currentMob = 1;
-        this.engageMob(currentMob);
+        mobIndex = 1;
+        this.engageMob(mobIndex);
     },
     
     fightBrute: function() {
-        currentMob = 2;
+        mobIndex = 2;
+        this.engageMob(mobIndex);
     },
     
     fightGnarl: function() {
-        currentMob = 3;
+        mobIndex = 3;
     },
     
     fightEliteBrute: function() {
-        currentMob = 4;
+        mobIndex = 4;
     },
     
     fightSeer: function() {
-        currentMob = 5;
+        mobIndex = 5;
     },
     
     fightOgre: function() {
-        currentMob = 6;
+        mobIndex = 6;
     },
     
     fightBoneClaw: function() {
-        currentMob = 7;
+        mobIndex = 7;
     },
     
     fightSludge: function() {
-        currentMob = 8;
+        mobIndex = 8;
     },
     
     fightGazer: function() {
-        currentMob = 9;
+        mobIndex = 9;
     }
 }
 

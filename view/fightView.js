@@ -33,6 +33,11 @@ const fightView = {
         gameUIMonsterStats.style.display = "block";
         monsterNameText.innerText = monsterName;
         monsterHealthText.innerText = monsterHealth;
+    },
+
+    updateMobLife: function(monsterHealth) {
+
+        monsterHealthText.innerText = monsterHealth;
     }
 };
 

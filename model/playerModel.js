@@ -1,15 +1,14 @@
 let player = {
     level : GAME_START_LEVEL,
+    maxLevel: GAME_START_MAX_LEVEL,
     xp : GAME_START_XP,
-    maxLevel: 500,
+    defense : GAME_START_DEFENSE,
+    strength : GAME_START_STRENGTH,
+    gold : GAME_START_GOLD,
     life : GAME_START_HP,
     maxLife : GAME_START_MAX_HP,
-    defense : 0,
-    maxDefense : 0,
     mana : GAME_START_MP,
     maxMana : GAME_START_MAX_MP,
-    strength : 10,
-    gold : 50,
     consumableSlots : {
         slotOne : {
             refName: null,
@@ -41,11 +40,16 @@ let player = {
             refName: "Apple",
             category: "hp_recovery",
             type: "consumable"
+        },
+        {
+            refName: "Small axe",
+            category: "weapon",
+            type: "equippable"
         }
     ],
     states : [
         {
-            name: "Fight mob",
+            name: "Engage mob",
             "button text": ["Attack", "Special attack", "Dodge", "Flee"],
             "button functions": ["attack", "specialAttack", "dodge", "flee"],
             text: "You get into your fighting stance and engage the enemy."
