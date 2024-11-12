@@ -57,13 +57,13 @@ let player = {
         {
             name: "Kill mob",
             "button text": ["Loot", "Leave"],
-            "button functions": ["loot", "leave"],
+            "button functions": ["lootMob", "leave"],
             "text": "The slain mob screams in agonizing pain. As it falls, its soul leaves it body and the corpse seems to get swallowed by the soil."
         },
         {
             name: "Die",
             "button text": ["Get another chance"],
-            "button functions": ["revive"],
+            "button functions": ["revivePlayer"],
             text: "YOU DIED"
         },
         {

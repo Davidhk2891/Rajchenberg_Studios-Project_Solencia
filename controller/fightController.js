@@ -1,6 +1,7 @@
 import { player } from "../model/playerModel.js";
 import { mobs } from "../model/mobs/mobsModel.js";
 import { weapons } from "../model/items/weaponsModel.js";
+import { playerStateController } from "./playerStateController.js";
 import { fightView } from "../view/fightView.js";
 import { playerView } from "../view/playerView.js";
 
@@ -30,9 +31,9 @@ const fightController = {
         });
 
         //Render player state text
-        fightView.updatePlayerStateText(fightState.text);
+        playerView.updatePlayerStateText(fightState.text);
         // Render action buttons and pass the functions
-        fightView.updatePlayerStateButtons(fightState["button text"], buttonFunctions);
+        playerView.updatePlayerStateButtons(fightState["button text"], buttonFunctions);
         // Load relevant mob data into fightView
         fightView.renderMobStats(mobName, mobLife);
     },
@@ -112,7 +113,7 @@ const fightController = {
         */
        
         // Update fight state UI
-        fightView.updatePlayerStateText(fightStateUI);
+        playerView.updatePlayerStateText(fightStateUI);
     },
 
     getMobAttackValue: function(mobLevel) {
@@ -134,10 +135,7 @@ const fightController = {
 
     playerDies: function() {
 
-        // LEFT HERE
-        // Check on the previous project how the die was handled.
-        // You need to call the player state that renders all the die components.
-        // You need to apply what is inside engageMob() but for dying.
+        playerStateController.killPlayer();
     },
 
     killMob: function() {

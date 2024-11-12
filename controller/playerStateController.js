@@ -36,6 +36,31 @@ const playerStateController = {
         let UIReadyLife = player.life.toString() + "%";
         let updatedGameContent = "You healed " + amountToHeal + " HP.";
         playerView.updateLifeBar(UIReadyLife, updatedGameContent);
+    },
+
+    killPlayer: function() {
+
+        // Get "Die" state
+        let dieState = player.states[2];
+
+        // Get the correct button functions and return them.
+        const buttonFunctions = dieState["button functions"].map((funcObj) => {
+
+            if (typeof this[funcObj] === 'function') {
+                return this[funcObj].bind(this);
+            }
+        });
+
+        // Render player state text
+        playerView.updatePlayerStateText(dieState.text);
+
+        // Render action buttons and pass the functions
+        playerView.updatePlayerStateButtons(dieState["button text"], buttonFunctions);
+    },
+
+    revivePlayer: function() {
+        console.log("Reviving player");
+        // Works. carry on later.
     }
 }
 
