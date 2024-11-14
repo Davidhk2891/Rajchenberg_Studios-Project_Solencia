@@ -5,7 +5,11 @@
 
 import { player } from "../model/playerModel.js";
 
+import { navigationController } from "./navigationController.js";
+
 import { playerView } from "../view/playerView.js";
+
+import { fightView } from "../view/fightView.js"; 
 
 const playerStateController = {
 
@@ -51,16 +55,39 @@ const playerStateController = {
             }
         });
 
-        // Render player state text
-        playerView.updatePlayerStateText(dieState.text);
-
         // Render action buttons and pass the functions
         playerView.updatePlayerStateButtons(dieState["button text"], buttonFunctions);
+
+        // Render player state text
+        playerView.updatePlayerStateText(dieState.text);
     },
 
     revivePlayer: function() {
+        
         console.log("Reviving player");
-        // Works. carry on later.
+        
+        // Get "Respawn" state
+        let reviveState = player.states[3];
+
+        // Get the correct button functions and return them
+        const buttonFunctions = reviveState["button functions"].map((funcObj) => {
+
+            if (typeof navigationController[funcObj] === 'function') {
+                return navigationController[funcObj].bind(navigationController);
+            }
+        });
+
+        // Render action  buttons and pass the functions
+        playerView.updatePlayerStateButtons(reviveState["button text"], buttonFunctions);
+
+        // Heal player
+        this.healPlayer(GAME_START_MAX_HP);
+
+        // Render player state text
+        playerView.updatePlayerStateText(reviveState.text);
+
+        // Hide Mob stats from the mob that killed player
+        fightView.hideMobStats();
     }
 }
 

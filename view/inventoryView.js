@@ -5,28 +5,23 @@ import { inventoryCont, playerInvWindow, playerEquippedGearCont, playerInventory
 // UI controls
 let isInventoryShowing = false;
 let blockManualInvOpening = false;
-let currWeaponPrefix = "- Weapon:";
-let currArmorPrefix = "- Armor:";
-let itemPrefix = "-";
 
 const inventoryView = {
     
     updateInventoryAndEquippedGearView: function(equippedGear, inventory) {
 
+        let itemPrefix = "-";
+
         this.clearEquippedGearCont();
 
         // Weapon
         if (equippedGear.weapon.refName != null) {
-            pWeapon.innerText = `${currWeaponPrefix} ${equippedGear.weapon.refName}`;
-            playerEquippedGearCont.appendChild(pWeapon);
-            pWeapon.style.marginTop = "4px";
+            pWeapon.innerText += ` ${equippedGear.weapon.refName}`;
         }
 
         // Armor
         if (equippedGear.armor.refName != null) {
-            pArmor.innerText = `${currArmorPrefix} ${equippedGear.armor.refName}`;
-            playerEquippedGearCont.appendChild(pArmor);
-            pArmor.style.marginTop = "4px";
+            pArmor.innerText += ` ${equippedGear.armor.refName}`;
         }
 
         // Inventory
@@ -65,7 +60,8 @@ const inventoryView = {
     },
 
     clearEquippedGearCont: function() {
-        playerEquippedGearCont.innerHTML = "";
+        pWeapon.innerText = "- Weapon: ";
+        pArmor.innerText = "- Armor: ";
     },
 
     handleDrawerOpening: function(showInventory) {

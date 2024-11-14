@@ -41,10 +41,8 @@ const navigationController = {
 
                     // Check if the function exists in the controller
                     if (controller && typeof controller[funcObj.function] === 'function') {
-                        console.log(`Function ${funcObj.function} found in ${funcObj.controller}`);
                         return controller[funcObj.function].bind(controller);
                     } else {
-                        console.log(`Function ${funcObj.function} not found in ${funcObj.controller}`);
                         return () => {};
                     }
 

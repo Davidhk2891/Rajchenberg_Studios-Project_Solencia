@@ -3,7 +3,7 @@
 export const hpMeter = document.getElementById('hp-meter');
 export const mpMeter = document.getElementById('mp-meter');
 */
-import { lvlText, xpText, hpMeter, mpMeter, gameUIContent, gameControlsDynamicNavCont } from "../constants/domElements.js";
+import { lvlText, xpText, hpMeter, mpMeter, gameUIContent, gameControlsDynamicNavCont, playerEquippedGearCont, pWeapon, pArmor } from "../constants/domElements.js";
 
 const playerView = {
 
@@ -13,6 +13,14 @@ const playerView = {
         xpText.innerText = xp;
         hpMeter.style.height = life;
         mpMeter.style.height = mana;
+
+        pWeapon.innerText = "- Weapon: ";
+        playerEquippedGearCont.appendChild(pWeapon);
+        pWeapon.style.marginTop = "4px";
+
+        pArmor.innerText = "- Armor: ";
+        playerEquippedGearCont.appendChild(pArmor);
+        pArmor.style.marginTop = "4px";
     },
 
     updateLifeBar: function(life, updatedContent = null) {
@@ -24,8 +32,14 @@ const playerView = {
 
     updatePlayerStateText: function(stateContent) {
 
-        // Render fighting state text
+        // Render state text
         gameUIContent.innerText = stateContent;
+    },
+
+    concatUpdatePlayerStateText: function(concatStateContent) {
+
+        // Render concated state text
+        gameUIContent.innerText += concatStateContent;
     },
 
     updatePlayerStateButtons: function(buttonsText, buttonsCallbacks) {

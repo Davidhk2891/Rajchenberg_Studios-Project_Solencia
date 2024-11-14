@@ -138,7 +138,7 @@ const inventoryController = {
 
         // If equippedGear has something equipped, save invItem in temporary var
         // Replace current equipped item with selected inventory item.
-        // Since equippedGear and inventory have the same schema, you can assign the whole object
+        // Since equippedGear and inventory have the same schema, you can assign the whole object.
         let tempEquippedGearHolder = null;
         if (invItem.category == "weapon") {
             if (equippedGear.weapon.refName != null)

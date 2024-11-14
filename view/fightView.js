@@ -13,6 +13,11 @@ const fightView = {
         monsterHealthText.innerText = monsterHealth;
     },
 
+    hideMobStats: function() {
+
+        gameUIMonsterStats.style.display = "none";
+    },
+
     updateMobLife: function(monsterHealth) {
 
         monsterHealthText.innerText = monsterHealth;

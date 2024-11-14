@@ -7,14 +7,16 @@ import { playerView } from "../view/playerView.js";
 
 let fightStateUI;
 let mobIndex = 0;
-let currentMob = {
-    mobName : mobs[mobIndex].name,
-    mobLife : mobs[mobIndex].life,
-    mobLevel : mobs[mobIndex].level
-};
+let currentMob;
 const fightController = {
 
     engageMob: function() {
+
+        currentMob = {
+            mobName : mobs[mobIndex].name,
+            mobLife : mobs[mobIndex].life,
+            mobLevel : mobs[mobIndex].level
+        };
 
         // Get mob data
         let mobName = mobs[mobIndex].name;
@@ -75,6 +77,7 @@ const fightController = {
         // Define mob dealing damage to player
         if (this.isPlayerToBeHit()) {
             let mobHitPoints = this.getMobAttackValue(currentMob.mobLevel);
+            // Apply damage dealt to player
             player.life -= mobHitPoints;
             let UIReadyLife = player.life.toString() + "%";
             playerView.updateLifeBar(UIReadyLife);
@@ -93,27 +96,18 @@ const fightController = {
 
             // Player died.
             this.playerDies();
+            this.checkIfWeaponBroke();
         } else if (currentMob.mobLife <= 0) {
 
             // Mob died.
             this.killMob();
-        }
+            this.checkIfWeaponBroke();
+        } else {
 
-        // Run weapon breaking odds. Need: weapon break rate, player.inventory
-        /* 
-        function attack() {
-            
-            // Weapon breaking odds
-            if (Math.random() == weaponBreakRate && inventory.length > 1) {
-                let brokenWeapon = inventory.pop();
-                text.innerText = "Your " + brokenWeapon + " just broke. Tough luck champ...";
-                currentWeapon--;
-            }
+            // Update fight state UI
+            playerView.updatePlayerStateText(fightStateUI);
+            this.checkIfWeaponBroke();
         }
-        */
-       
-        // Update fight state UI
-        playerView.updatePlayerStateText(fightStateUI);
     },
 
     getMobAttackValue: function(mobLevel) {
@@ -142,6 +136,19 @@ const fightController = {
 
     },
 
+    checkIfWeaponBroke: function() {
+        
+        if (Math.random() <= WEAPON_BREAK_RATE && (player.equippedGear.weapon.refName != null)) {
+            playerView.concatUpdatePlayerStateText(`Also, your ${player.equippedGear.weapon.refName} just broke apart...`);
+            player.equippedGear.weapon = {
+                refName: null,
+                category: null,
+                type: null
+            }
+            // Clear UI for equipped weapon
+        }
+    },
+ 
     fightCreeper: function() {
         mobIndex = 0;
         this.engageMob(mobIndex);
@@ -159,30 +166,37 @@ const fightController = {
     
     fightGnarl: function() {
         mobIndex = 3;
+        this.engageMob(mobIndex);
     },
     
     fightEliteBrute: function() {
         mobIndex = 4;
+        this.engageMob(mobIndex);
     },
     
     fightSeer: function() {
         mobIndex = 5;
+        this.engageMob(mobIndex);
     },
     
     fightOgre: function() {
         mobIndex = 6;
+        this.engageMob(mobIndex);
     },
     
     fightBoneClaw: function() {
         mobIndex = 7;
+        this.engageMob(mobIndex);
     },
     
     fightSludge: function() {
         mobIndex = 8;
+        this.engageMob(mobIndex);
     },
     
     fightGazer: function() {
         mobIndex = 9;
+        this.engageMob(mobIndex);
     }
 }
 
