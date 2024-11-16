@@ -4,6 +4,7 @@ import { weapons } from "../model/items/weaponsModel.js";
 import { playerStateController } from "./playerStateController.js";
 import { fightView } from "../view/fightView.js";
 import { playerView } from "../view/playerView.js";
+import { inventoryView } from "../view/inventoryView.js";
 
 let fightStateUI;
 let mobIndex = 0;
@@ -96,18 +97,17 @@ const fightController = {
 
             // Player died.
             this.playerDies();
-            this.checkIfWeaponBroke();
         } else if (currentMob.mobLife <= 0) {
 
             // Mob died.
             this.killMob();
-            this.checkIfWeaponBroke();
         } else {
 
             // Update fight state UI
             playerView.updatePlayerStateText(fightStateUI);
-            this.checkIfWeaponBroke();
         }
+        this.checkIfWeaponBroke();
+        console.log("Should have checked that the weapon broke");
     },
 
     getMobAttackValue: function(mobLevel) {
@@ -146,6 +146,7 @@ const fightController = {
                 type: null
             }
             // Clear UI for equipped weapon
+            inventoryView.clearWeaponCont();
         }
     },
  

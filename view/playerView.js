@@ -14,11 +14,11 @@ const playerView = {
         hpMeter.style.height = life;
         mpMeter.style.height = mana;
 
-        pWeapon.innerText = "- Weapon: ";
+        pWeapon.innerText = WEAPON_CONT;
         playerEquippedGearCont.appendChild(pWeapon);
         pWeapon.style.marginTop = "4px";
 
-        pArmor.innerText = "- Armor: ";
+        pArmor.innerText = ARMOR_CONT;
         playerEquippedGearCont.appendChild(pArmor);
         pArmor.style.marginTop = "4px";
     },

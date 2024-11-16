@@ -59,9 +59,13 @@ const inventoryView = {
         playerInventoryCont.innerHTML = "";
     },
 
+    clearWeaponCont: function() {
+        pWeapon.innerText = WEAPON_CONT;
+    },
+
     clearEquippedGearCont: function() {
-        pWeapon.innerText = "- Weapon: ";
-        pArmor.innerText = "- Armor: ";
+        pWeapon.innerText = WEAPON_CONT;
+        pArmor.innerText = ARMOR_CONT;
     },
 
     handleDrawerOpening: function(showInventory) {
