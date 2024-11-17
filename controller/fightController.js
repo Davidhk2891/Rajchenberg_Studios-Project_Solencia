@@ -133,7 +133,7 @@ const fightController = {
     },
 
     killMob: function() {
-
+        
     },
 
     checkIfWeaponBroke: function() {
