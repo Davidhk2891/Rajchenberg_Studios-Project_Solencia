@@ -107,13 +107,12 @@ const fightController = {
             playerView.updatePlayerStateText(fightStateUI);
         }
         this.checkIfWeaponBroke();
-        console.log("Should have checked that the weapon broke");
     },
 
     getMobAttackValue: function(mobLevel) {
 
         // Starting the game this is 10 - 0. So minimum possible hit from mob is 10. Leave this as is for now.
-        let hit = (mobLevel * MONSTER_HIT_RATE) - (Math.floor(Math.random() * player.xp));
+        let hit = (mobLevel * MOB_HIT_SCORE) - (Math.floor(Math.random() * player.xp));
         return hit > 0 ? hit : 0;
     },
 
@@ -133,7 +132,49 @@ const fightController = {
     },
 
     killMob: function() {
-        
+        /* 
+            
+            gold += (monsters[currentMonster].level *	goldDropRate);
+            goldText.innerText = gold;
+
+            Algo: What needs to happen
+            4) Loot triggers the looting mechanics. In which the player gets a certain amoung of gold and a slim chance to get an item
+        */
+
+        // Get Kill mob state
+        let killMobState = player.states[1];
+
+        // Get correct button functions and return them
+        const buttonFunctions = killMobState["button functions"].map((funcObj) => {
+
+            if (typeof this[funcObj] === 'function') {
+                return this[funcObj].bind(this);
+            }
+        });
+
+        // Render action buttons and pass the functions
+        playerView.updatePlayerStateButtons(killMobState["button text"], buttonFunctions);
+
+        // Claim Xp
+        let gainedXp = mobs[mobIndex].level * XP_GAIN_RATE;
+        player.xp += gainedXp;
+
+        // Update UI
+        playerView.updatePlayerStateText(`The ${mobs[mobIndex].name} falls. ${killMobState.text}.\n You gained ${gainedXp} xp.`);
+    },
+
+    lootMob: function() {
+
+        // Looting logic
+        console.log("Looting mob");
+
+        // Go back to the map where you were
+        this.leave();
+    },
+
+    leave: function() {
+
+
     },
 
     checkIfWeaponBroke: function() {
