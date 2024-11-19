@@ -174,7 +174,7 @@ const fightController = {
 
     leave: function() {
 
-
+        // Update player location back to were it came from
     },
 
     checkIfWeaponBroke: function() {
