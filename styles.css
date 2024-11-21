@@ -1,5 +1,6 @@
 :root {
-    --ps-color-main: #730100;
+    --ps-color-primary: #000;
+    --ps-color-secondary: #4AF626;
     --ps-color-white: #fff;
     --ps-color-black: #000;
     --ps-color-monster-stats: #c70d0d;
@@ -10,7 +11,7 @@
     --ps-color-mp-gr-2: #0069ec;
     --ps-padding-standard: 10px;
     --ps-margin-standard: 10px;
-    --ps-game-border: 4px ridge var(--ps-color-black); 
+    --ps-game-border: 6px ridge var(--ps-color-black); 
 }
 
 * {
@@ -20,7 +21,18 @@
 body {
     background-color: var(--ps-color-black);
     font-family: monospace;
+    color: var(--ps-color-secondary);
     letter-spacing: 1.6px;
+    height: 100%;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 button {
@@ -30,15 +42,12 @@ button {
 
 h1, main > p:first-of-type {
     text-align: center;
-    color: var(--ps-color-white);
+    color: var(--ps-color-secondary);
 }
 
 #game-window {
-    padding: var(--ps-padding-standard);
-    background-color: var(--ps-color-white);
-    max-width: 600px;
-    max-height: 550px;
-    margin: 30px auto 0;
+    max-width: 700px;
+    max-height: 600px;
 }
 
 #game-ui-header {
@@ -63,6 +72,7 @@ h1, main > p:first-of-type {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--ps-color-primary);
 }
 
 #player-data-upfront {
@@ -119,8 +129,8 @@ h1, main > p:first-of-type {
     max-width: 350px;
     height: 100%;
     display: none;
-    background-color: var(--ps-color-hp-gr-2);
-    color: var(--ps-color-white);
+    background-color: var(--ps-color-primary);
+    color: var(--ps-color-secondary);
     font-size: 0.65rem;
     text-align: center;
 }
@@ -149,7 +159,7 @@ h1, main > p:first-of-type {
 } 
 
 #player-inventory-title, #player-equipped-gear-title {
-    border-bottom: 1px solid var(--ps-color-white);
+    border-bottom: 1px solid var(--ps-color-secondary);
     padding-bottom: 3px;
 }
 
@@ -163,17 +173,16 @@ h1, main > p:first-of-type {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--ps-color-main);
-    color: var(--ps-color-white);
     line-height: 24px;
+    background-color: var(--ps-color-primary);
     scrollbar-color: var(--ps-color-hp-gr-2);
     /* overflow: scroll; */
 }
 
 /* Monster stats */
 #game-ui-monster-stats {
-    background-color: var(--ps-color-monster-stats);
-    color: var(--ps-color-white);
+    background-color: var(--ps-color-primary);
+    color: var(--ps-color-secondary);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -191,7 +200,7 @@ h1, main > p:first-of-type {
 
 #game-controls-dynamic-nav-cont {
     height: 70px;
-    background-color: var(--ps-color-grey);
+    background-color: var(--ps-color-primary);
     border-left: var(--ps-game-border);
     border-right: var(--ps-game-border);
 }
@@ -201,7 +210,7 @@ h1, main > p:first-of-type {
     flex-direction: row;
     justify-content: space-between;
     align-items:end;
-    background-color: var(--ps-color-grey);
+    background-color: var(--ps-color-primary);
     border-left: var(--ps-game-border);
     border-right: var(--ps-game-border);
     border-bottom: var(--ps-game-border);
@@ -235,12 +244,18 @@ h1, main > p:first-of-type {
 }
 
 #hp-meter {
-    background-image: linear-gradient(to right, var(--ps-color-hp-gr-1), var(--ps-color-hp-gr-2));
+    background-color: var(--ps-color-secondary);
 }
 
 #mp-meter {
-  background-image: linear-gradient(to right, var(--ps-color-mp-gr-1), var(--ps-color-mp-gr-2));
-
+    /* Left here. Learn how to do this properly from chatGPT response */
+    background-image: repeating-linear-gradient(
+        to top,
+        var(--ps-color-primary),
+        var(--ps-color-primary) 6px,
+        var(--ps-color-secondary) 6px,
+        var(--ps-color-secondary) 8px
+    );
 }
  
 #consumable-skill-goptions-cont {
@@ -268,22 +283,22 @@ h1, main > p:first-of-type {
 .slots-amount {
     position: absolute;
     top: 10px;
-    right: 2px;
-    color: var(--ps-color-white);
+    right: 3px;
+    color: var(--ps-color-secondary);
     font-weight: 700;
 }
 
 .slots-key {
     position: absolute;
     top: 10px;
-    left: 2px;
-    color: var(--ps-color-white);
+    left: 4px;
+    color: var(--ps-color-secondary);
     font-weight: 500;
 }
 
 #skill-slot {
-    width: 50px;
-    min-width: 50px;
+    width: 60px;
+    min-width: 60px;
     height: 60px;
     min-height: 60px;
 }
@@ -300,19 +315,23 @@ h1, main > p:first-of-type {
 }
 
 #game-controls-dynamic-nav-cont {
+    /* Make this height a bit bigger */
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    height: 100px;
     gap: 20px;
     max-width: inherit;
     padding: 0 10px;
 }
 
 #game-controls-dynamic-nav-cont > button {
-    background-color: var(--ps-color-hp-gr-1);
-    color: var(--ps-color-white);
-    padding: 3px 5px;
+    background-color: var(--ps-color-primary);
+    color: var(--ps-color-secondary);
+    padding: 6px 8px;
+    letter-spacing: 0.8px;
+    font-family: monospace;
 }
 
 #char-stats-cont, #inventory-cont {
